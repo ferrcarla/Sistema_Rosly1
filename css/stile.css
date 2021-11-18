@@ -1,0 +1,24 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.form-register{
+	width: 400px;
+	padding: 30px;
+	margin: auto;
+	
+	border-radius: 4px;
+	font-family: 'calibri';
+	color: white; 
+}
+.controls{
+	width: 100%;
+	
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+	border: 1px solid #1f53c5;
+	font-family: 'calibri';
+	font-size: 18px;
+}

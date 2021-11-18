@@ -1,0 +1,10 @@
+form{
+	width: 200px;
+	height: 100%;
+	margin: center;
+	background: silver;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	margin-top: 20px;
+	border-radius: 7px;
+}

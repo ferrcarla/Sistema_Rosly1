@@ -1,0 +1,30 @@
+
+section {
+	width: 80%;
+	min-height: 500px;
+	border: 1px solid #DDD;
+	padding: 2%;
+	margin: 0 auto;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+.producto{
+	width: 23%;
+	height: 220px;
+	background-color: #fafafa;
+	border: 1px solid gray;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 1%;
+	margin-top: 1%;
+}
+.producto img{
+	width: 60%;
+	height: 60%;
+	margin: 0 auto;
+
+}
+form{
+	margin-left: 500px;
+	width: 30%;
+}
