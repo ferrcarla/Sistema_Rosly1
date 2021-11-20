@@ -19,7 +19,20 @@ a:hover {
     background-color: var(--primary) !important;
 }
 
-.bg-light { background-color: var(--light) !important; }
+.btn {
+    border: 0; 
+}
+
+.btn-primary {
+    background-color: ;
+}
+.bg-light { 
+    background-color: var(--primary);
+ }
+ 
+.btn-primary:hover {
+    background-color: var(--primary);
+}
 
 #sidebar-container{
     min-height: 100vh;    
@@ -40,4 +53,11 @@ a:hover {
 
 .avatar {
     max-width: 35px
+}
+
+
+#content {
+    overflow-y: auto;
+    height: 100vh;
+    padding bottom: 5rem;
 }
