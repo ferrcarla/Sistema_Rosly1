@@ -51,7 +51,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
 
           <li class="nav-item"><a class="nav-link active text-white" aria-current="page" href="principal.php">Home</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="publicidad.php">Publicidad </a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="publicidad.php">Publicidad nnnnnnnnn </a></li>
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tienda</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="publicidad.php">Catalogo existentes </a></li>
