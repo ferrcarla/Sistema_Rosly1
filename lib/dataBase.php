@@ -31,10 +31,11 @@
 		public function signIn($query, $user){
 			$sign_row = $this->link->query($query) or die ($this->link->error.__LINE__);
 			if ($sign_row) {
-				header("Location:../public/principal.php?msg=".urlencode('Datos Correctos - Bienvenidos !!!' . $user));
+				// header("Location:../public/principal.php?msg=".urlencode('Datos Correctos - Bienvenidos !!!' . $user));
+				header("location:../app/controllers/home/");
 				exit();
 			}else{
-				die("Error:(".$this->link->errno.")".$this->link-error);
+			die("Error:(" . $this->link->errno . ")" . $this->link - error);
 			}
 		}
 		public function registerUser($query){

@@ -16,17 +16,24 @@ if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD']=='POST'){
 		$query = "SELECT * FROM usuario Where User='$user'";
 		$result = $db->select($query);
 		if(mysqli_num_rows($result)){
-		while ($row = mysqli_fetch_array($result)) {
-					if (password_verify($pass, $row["Password"])) {
-						session_start();
-						$_SESSION['user_sesion'] = $user;
-						$_SESSION['pass_sesion'] = $pass;
-						$login = $db->signIn($query, $_SESSION['user_sesion']);
-					}
-					else{
-						header("Location: ../index.php?error=si");
-					}
+			while ($row = mysqli_fetch_array($result)) {
+				if ( password_verify($pass, $row["Password"]) ) {
+					session_start();
+					$_SESSION['user_sesion'] = $user;
+					$_SESSION['pass_sesion'] = $pass;
+					// poniendo en sesion el nombre del usuario
+					$_SESSION['id_rol'] = $row["id_rol"];
+					$_SESSION['nombre'] = $row["Nombre"];
+					$_SESSION['ci'] = $row["CI"];
+					$_SESSION['direcccion'] = $row["Direcccion"];
+					$_SESSION['telefono'] = $row["Telefono"];
+					$_SESSION['email'] = $row["User"];
+
+					$login = $db->signIn($query, $_SESSION['user_sesion']);
+				} else {				
+					header("Location: ../index.php?error=si");
 				}
+			}
 		}
 		else{
 			header("Location:../index.php?error=si");
