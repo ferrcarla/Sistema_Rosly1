@@ -37,3 +37,7 @@ a:hover {
 .btn-search {
     right: 5px;
 }
+
+.avatar {
+    max-width: 35px
+}
