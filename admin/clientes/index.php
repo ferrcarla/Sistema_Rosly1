@@ -6,32 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="bootstrap"/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet"> 
     
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;700&display=swap" rel="stylesheet"> 
-    <link rel="styles" href="assets/css/style.css"> 
-    <title>Hello, world!</title>
+    <link rel="stylesheet" href="../../assets/css/style.css"> 
+    
+    <title>HHGJHGJHJH</title>
   </head>
   <body>
     <div class="d-flex">
-      <div classs="sidebar-container" class="bg-primary">
+      <div id="sidebar-container" class="bg-primary">
         <div class="logo">
-          <h4>Rosly</h4>
+          <h4 class="text-light">Rosly</h4>
         </div>  
         <div class="menu">
-          <a href="a"<i class="icon ion-md-apps"></i> Tablero</a>
-          <a href="a"<i class="icon ion-md-people"></i> Usuarios</a>
-          <a href="a"<i class="icon ion-md-stats"></i> Estadisticas</a>
-          <a href="a"<i class="icon ion-md-person"></i> Perfil</a>
-          <a href="a"<i class="icon ion-md-settings"></i> Configuracion</a>
+          <a href="#"class="d-block text-light p-3"><i class="icon ion-md-apps mr-2 tead tead"></i> Tablero</a>
+          <a href="#"class="d-block text-light p-3"><i class="icon ion-md-people mr-2 tead"></i> Usuarios</a>
+          <a href="#"class="d-block text-light p-3"><i class="icon ion-md-stats mr-2 tead"></i> Estadisticas</a>
+          <a href="#"class="d-block text-light p-3"><i class="icon ion-md-person mr-2 tead"></i> Perfil</a>
+          <a href="#"class="d-block text-light p-3"><i class="icon ion-md-settings mr-2 tead"></i> Configuracion</a>
         </div>
       </div>
+      <div class="w-100">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <div> class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <form class="form-inline position-relative my-2 d-inline-block">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-search position-absolute" type="submit">
+              <i class="icon ion-md-search"></i>
+            </button>
+          </form>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+             <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>    
     </div>
     
-    <!-- Optional JavaScript; choose one of the two! -->
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    
+   
+      
+
+      
+   
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
