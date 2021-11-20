@@ -16,17 +16,19 @@
 
 <body class="error-page">
 
-    <section>
-        <div class="container ">
-            <section class="error-wrapper text-center">
-                <h1><img alt="" src="<?php echo ROOT; ?>resources/assets/images/500-error.png"></h1>
-                <h2>OOOPS!!!</h2>
-                <h3>Algo salió mal.</h3>
-                <p class="nrml-txt">¿Por qué no intentar refrescar tu página? O tu puedes <a href="#">contacta con nuestro soporte</a> si el problema persiste.</p>
-                <a class="back-btn" href="<?php echo ROOT_CONTROLLER ?>home"> Volver a Inicio</a>
-            </section>
-        </div>
-    </section>
+    <div>
+        <section>
+            <div class="container ">
+                <section class="error-wrapper text-center">
+                    <h1><img alt="" src="<?php echo ROOT; ?>resources/assets/images/500-error.png"></h1>
+                    <h2>OOOPS!!!</h2>
+                    <h3>Algo salió mal.</h3>
+                    <p class="nrml-txt">¿Por qué no intentar refrescar tu página? O tu puedes <a href="#">contacta con nuestro soporte</a> si el problema persiste.</p>
+                    <a class="back-btn" href="<?php echo ROOT_CONTROLLER ?>home"> Volver a Inicio</a>
+                </section>
+            </div>
+        </section>
+    </div>
 
     <!-- Placed js at the end of the document so the pages load faster -->
 
