@@ -16,7 +16,7 @@
 
             <div id="content">
                 <section>
-                    <div class="container">                        
+                    <div class="container-fluid">                        
                         <?php
                         if (isset($contenido))
                             require_once($contenido);
