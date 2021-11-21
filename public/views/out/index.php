@@ -1,13 +1,13 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+        <li class="breadcrumb-item active" aria-current="page">Salidas</li>
     </ol>
 </nav>
 <div class="container">
     <div class="row">
         <div class="card col-12">
             <div class="card-body">
-                <h5 class="card-title">Lista de clientes</h5>
+                <h5 class="card-title">Salidas</h5>
                 <i class="fas fa-divide"></i>
                 <div class="row">
                     <div class="col-12">
@@ -51,7 +51,7 @@
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Abrir modal</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrar">Abrir modal</button>
 
 <?php
 require_once('registro_modal.php');
