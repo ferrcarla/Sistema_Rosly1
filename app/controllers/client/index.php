@@ -4,8 +4,6 @@ require_once '../../config/session.php';
 
 require_once("../../config/db.php");
 require_once("../../config/conection.php");
-//Variables para enviar a la plantilla
-
 
 $sql = "SELECT CI_Cliente,
 	Nombre_Cli,
