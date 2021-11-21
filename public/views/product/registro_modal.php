@@ -29,7 +29,7 @@
 
             <div class="form-row">
             <div class="form-group col-md-6">
-                    <label for="telefono">Talla</label>
+                    <label for="talla">Talla</label>
                     <select class="form-control" name="tallas" id="talla">
                         <option value="0"></option>
                         <option value="1">S</option>
