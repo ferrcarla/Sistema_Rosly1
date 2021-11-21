@@ -5,6 +5,11 @@
 </nav>
 <div class="container">
     <div class="row">
+         <div class="col-12 d-flex flex-row-reverse">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrar">
+                <i class="bi bi-node-plus-fill"></i> Nuevo
+                 </button>
+        </div>
         <div class="card col-12">
             <div class="card-body">
                 <h5 class="card-title">Salidas</h5>
@@ -51,7 +56,6 @@
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrar">Abrir modal</button>
 
 <?php
 require_once('registro_modal.php');
