@@ -8,17 +8,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post">
+                <form method="post" id=frmRegistro>
                     <div>
                         <select class="form-control" name="producto_id" id="producto_id" required placeholder="seleccione producto">
-                            <option value="0">seleccione producto</option>
+                            <option value="">seleccione producto</option>
                             <option value="1">Chompas</option>
                             <option value="2">Pantalones</option>
                             <option value="3">Poleras</option>
                         </select>                    
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">cantidad:</label>
+                        <label for="recipient-name" class="col-form-label">Cantidad:</label>
                         <input type="text" class="form-control" id="cantidad" name="cantidad" maxlength ="3" required placeholder="cantidad">
                     </div>
                     <div class="float-right">
