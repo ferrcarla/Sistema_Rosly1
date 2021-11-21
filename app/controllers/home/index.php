@@ -4,5 +4,5 @@
 	
 	//Variables para enviar a la plantilla son necesarias
 	$titulo="Bienvenido";
-	$contenido="home.php";	
+	$contenido="home.php";
 	require_once ('../../../public/views/plantilla.php');

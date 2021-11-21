@@ -3,6 +3,7 @@
         <h4 class="text-light">Rosly</h4>
     </div>
     <div class="menu">
+        <a href="<?php echo CONTROLLER; ?>home/" class="d-block text-light p-3"><i class="icon ion-md-apps mr-2 tead tead"></i> Inicio</a>
         <a href="<?php echo CONTROLLER; ?>client/" class="d-block text-light p-3"><i class="icon ion-md-apps mr-2 tead tead"></i> Clientes</a>
         <a href="<?php echo CONTROLLER; ?>product/" class="d-block text-light p-3"><i class="icon ion-md-people mr-2 tead"></i> Productos</a>
         <a href="#" class="d-block text-light p-3"><i class="icon ion-md-people mr-2 tead"></i> Pedidos</a>
