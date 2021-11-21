@@ -90,18 +90,15 @@
                 }
             },
             messages: {
-                nombre_usuario: {
-                    remote: "Debe elegir otro nombre de usuario.",
-                },
                 ci: {
                     remote: "El numero de C.I. ya esta registrado verifique",
                 },
             },
             submitHandler: function(form) {
                 $.ajax({
-                    url: '../../models/docente/registro_model.php',
+                    url: '../../models/client/registro_model.php',
                     type: 'post',
-                    data: $("#frmRegistrar").serialize(),
+                    data: $("#frmRegistro").serialize(),
                     beforeSend: function() {
                         transicion("Procesando Espere....");
                     },
@@ -114,7 +111,7 @@
                             transicionSalir();
                             mensajes_alerta('DATOS GUARDADOS EXITOSAMENTE !! ', 'success', 'GUARDAR DATOS');
                             setTimeout(function() {
-                                window.location.href = '<?php echo ROOT_CONTROLLER ?>docente/index.php';
+                                window.location.href = '<?php echo CONTROLLER; ?>client/index.php';
                             }, 3000);
                         } else {
                             transicionSalir();
@@ -167,7 +164,7 @@
                             transicionSalir();
                             mensajes_alerta('DATOS EDITADOS EXITOSAMENTE !! ', 'success', 'EDITAR DATOS');
                             setTimeout(function() {
-                                window.location.href = '<?php echo ROOT_CONTROLLER ?>docente/index.php';
+                                window.location.href = '<?php echo CONTROLLER; ?>docente/index.php';
                             }, 3000);
                         } else {
                             transicionSalir();
@@ -194,7 +191,7 @@
                         transicionSalir();
                         mensajes_alerta('DATOS ELIMINADOS ELIMINADOS EXITOSAMENTE !! ', 'success', 'EDITAR DATOS');
                         setTimeout(function() {
-                            window.location.href = '<?php echo ROOT_CONTROLLER ?>docente/index.php';
+                            window.location.href = '<?php echo CONTROLLER ?>docente/index.php';
                         }, 3000);
                     } else {
                         transicionSalir();
