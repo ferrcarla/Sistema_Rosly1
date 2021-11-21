@@ -5,11 +5,20 @@
 </nav>
 <div class="container">
     <div class="row">
+            <div class="col-12 d-flex flex-row-reverse">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registroEntrada">
+                 <i class="bi bi-node-plus-fill"></i> Nuevo
+                </button>
+            </div>
         <div class="card col-12">
             <div class="card-body">
                 <h5 class="card-title">Lista de Entradas</h5>
                 <i class="fas fa-divide"></i>
                 <div class="row">
+                <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">cantidad:</label>
+                        <input type="text" class="form-control" id="cantidad" name="cantidad" maxlength ="3" required placeholder="cantidad">
+                    </div>
                     <div class="col-12">
 
                     </div>
@@ -51,7 +60,6 @@
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registroEntrada" >Abrir modal</button>
 
 <?php
 require_once('registro_modal.php');
