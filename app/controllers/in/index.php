@@ -8,7 +8,7 @@ require_once("../../config/conection.php");
 
 
 $sql = "SELECT *
-    FROM entradas
+    FROM entrada
 ";
 if (!($entradas = $con->query($sql))) {
     echo "Falló SELECT: (" . $con->errno . ") " . $con->error;
