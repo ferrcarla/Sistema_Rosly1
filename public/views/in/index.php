@@ -27,19 +27,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($clientes as $cliente) : ?>
+                        <?php foreach ($entradas as $entrada) : ?>
                             <tr>
-                                <td><?php echo $cliente['CI_Cliente'] ?></td>
-                                <td><?php echo $cliente['Nombre_Cli'] ?></td>
-                                <td><?php echo $cliente['Apellido_Cli'] ?></td>
-                                <td><?php echo $cliente['Direccion'] ?></td>
-                                <td><?php echo $cliente['Correo'] ?></td>
-                                <td><?php echo $cliente['Telefono'] ?></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
-                                    <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" onclick="obtener_datos(<?php echo $cliente['CI_Cliente'] ?>)">
+                                    <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" onclick="obtener_datos()">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar" onclick="eliminar_datos(<?php echo $cliente['CI_Cliente'] ?>)">
+                                    <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar" onclick="eliminar_datos()">
                                         <i class="bi bi-trash-fill"></i>
                                     </a>
                                 </td>
@@ -51,7 +51,7 @@
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Abrir modal</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Abrir modal</button>
 
 <?php
 require_once('registro_modal.php');
