@@ -11,7 +11,7 @@
                 <i class="fas fa-divide"></i>
                 <div class="row">
                     <div class="col-12 d-flex flex-row-reverse">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrar">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registroEntrada">
                             <i class="bi bi-node-plus-fill"></i> Nuevo
                         </button>
                     </div>
@@ -61,3 +61,22 @@
 
 <?php require_once('registro_modal.php'); ?>
 <?php require_once('editar_modal.php'); ?>
+<script>
+    $(document).ready(function() {
+        $("#frmRegistro").validate({
+            rules: {
+                producto_id: {
+                    required: true,
+                },
+                cantidad: {
+                    required: true,
+                    maxlength: 3,
+                    number: true,
+                },               
+            },
+            submitHandler: function(form) {
+               alert('correcto');            
+            }
+        });        
+    });
+</script>
