@@ -63,7 +63,6 @@
 <script>
     $(document).ready(function() {
         $("#frmRegistro").validate({
-            debug: true,
             rules: {
                 nombre: {
                     required: true,
@@ -87,6 +86,15 @@
                             }
                         }
                     }
+                },
+                direccion: {
+                    required: true,
+                },
+                telefono: {
+                    required: true,
+                    number: true,
+                    minlength: 8,
+                    maxlength: 10,
                 }
             },
             messages: {
@@ -95,111 +103,9 @@
                 },
             },
             submitHandler: function(form) {
-                $.ajax({
-                    url: '../../models/client/registro_model.php',
-                    type: 'post',
-                    data: $("#frmRegistro").serialize(),
-                    beforeSend: function() {
-                        transicion("Procesando Espere....");
-                    },
-                    success: function(response) {
-                        if (response == 1) {
-                            $('#btnRegistrar').attr({
-                                disabled: 'true'
-                            });
-                            $('#modal_Registrar').modal('hide');
-                            transicionSalir();
-                            mensajes_alerta('DATOS GUARDADOS EXITOSAMENTE !! ', 'success', 'GUARDAR DATOS');
-                            setTimeout(function() {
-                                window.location.href = '<?php echo CONTROLLER; ?>client/index.php';
-                            }, 3000);
-                        } else {
-                            transicionSalir();
-                            mensajes_alerta('ERROR AL REGISTRAR verifique los datos!! ' + response, 'error', 'GUARDAR DATOS');
-                        }
-                    }
-                });
+               alert('correcto');            
             }
-        });
-        $('#frmEditar').validate({
-            debug: true,
-            rules: {
-                nombre_usuario: {
-                    required: true,
-                    minlength: 3,
-                    remote: {
-                        url: "../../models/usuario/verifica.php",
-                        type: 'post',
-                        data: {
-                            nombre_usuario: function() {
-                                return $("#frmEditar [id=nombre_usuario]").val();
-                            },
-                            id_usuario: function() {
-                                return $("#id_usuario").val();
-                            },
-                            tipo: "si",
-                        }
-                    }
-                }
-            },
-            messages: {
-                nombre_usuario: {
-                    remote: "Debe elegir otro nombre de usuario.",
-                }
-            },
-            submitHandler: function(form) {
-                $.ajax({
-                    url: '../../models/docente/editar_model.php',
-                    type: 'post',
-                    data: $("#frmEditar").serialize(),
-                    beforeSend: function() {
-                        transicion("Procesando Espere....");
-                    },
-                    success: function(response) {
-                        if (response == 1) {
-                            $('#modalEditar').modal('hide');
-                            $('#btnEditar').attr({
-                                disabled: 'true'
-                            });
-                            transicionSalir();
-                            mensajes_alerta('DATOS EDITADOS EXITOSAMENTE !! ', 'success', 'EDITAR DATOS');
-                            setTimeout(function() {
-                                window.location.href = '<?php echo CONTROLLER; ?>docente/index.php';
-                            }, 3000);
-                        } else {
-                            transicionSalir();
-                            mensajes_alerta('ERROR AL EDITAR EL USUARIO verifique los datos!! ' + response, 'error', 'EDITAR DATOS');
-                        }
-                    }
-                });
-            }
-        });
-        $("#btnEliminar").click(function(event) {
-            $.ajax({
-                url: '../../models/docente/eliminar_model.php',
-                type: 'POST',
-                data: $("#frmEliminar").serialize(),
-                beforeSend: function() {
-                    transicion("Procesando Espere....");
-                },
-                success: function(response) {
-                    if (response == 1) {
-                        $('#modalEliminar').modal('hide');
-                        $('#btnEliminar').attr({
-                            disabled: 'true'
-                        });
-                        transicionSalir();
-                        mensajes_alerta('DATOS ELIMINADOS ELIMINADOS EXITOSAMENTE !! ', 'success', 'EDITAR DATOS');
-                        setTimeout(function() {
-                            window.location.href = '<?php echo CONTROLLER ?>docente/index.php';
-                        }, 3000);
-                    } else {
-                        transicionSalir();
-                        mensajes_alerta('ERROR AL ELIMINAR AL DOCENTE verifique los datos!! ' + response, 'error', 'EDITAR DATOS');
-                    }
-                }
-            });
-        });
+        });        
     });
 
     function obtener_datos(id) {

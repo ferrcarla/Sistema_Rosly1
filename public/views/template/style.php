@@ -6,3 +6,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo ROOT; ?>resources/assets/css/style.css">
 <link rel="stylesheet" href="<?php echo ROOT; ?>resources/assets/DataTables/datatables.min.css">
+
+
+<script src="<?php echo ROOT; ?>resources/assets/js/jquery-3.5.1.min.js"></script>

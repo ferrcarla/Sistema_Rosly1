@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="frmRegistro">
+                <form id="frmRegistro" method="post">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" maxlength="15" required placeholder="Escribe nombre aqui">
@@ -25,7 +25,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="telefono">Telefono</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono" required placeholder="telefono">
+                            <input type="text" class="form-control" id="telefono" name="telefono" required placeholder="telefono" maxlength="10">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputState">Correo</label>
