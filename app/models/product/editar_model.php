@@ -1,20 +1,47 @@
-<?php 
+<?php
+	require_once '../../config/global_variable.php';
 	require_once ("../../config/db.php");
 	require_once ("../../config/conection.php");
 
 	//echo "<pre>";print_r ($_REQUEST);echo "</pre>";
-	$nombre = trim($_POST["nombre_edit"]);
-	$apellido = trim($_POST["apellido_edit"]);
-    $ci  = trim($_POST["ci_edit"]);    
-    $telefono  = trim($_POST["telefono_edit"]);
-    $correo = trim($_POST["correo_edit"]);
-    $direccion = trim($_POST["direccion_edit"]);
+	$archivo = (isset($_FILES['imagen'])) ? $_FILES['imagen'] : null;
+    if ($archivo) {
+        $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+        $extension = strtolower($extension);
+        $extension_correcta = ($extension == 'jpg' or $extension == 'jpeg' or $extension == 'gif' or $extension == 'png');
+        if ($extension_correcta) {
+            $nombre_nuevo = 'articulo_'.date("YmdHis") . "." . $extension; //renombrarlo como nosotros queremos
+            $ruta_destino_archivo = "../../../upload/publicidad/{$nombre_nuevo}";
+            $archivo_ok = move_uploaded_file($archivo['tmp_name'], $ruta_destino_archivo);
+        }
+    }
+	$nombre   = trim($_POST["nombre_edit"]);
+	$categoria   = trim($_POST["categoria_edit"]);
+    $talla  = trim($_POST["talla_edit"]);    
+    $color  = trim($_POST["color_edit"]);
+    $descripcion = trim($_POST["descripcion_edit"]);
+    $precio = trim($_POST["precio_edit"]);
 
-    $id = $_POST["id_cliente_before"];
-	if ($id == $ci) {
-        $sql = "UPDATE cliente set Nombre_Cli='{$nombre}', Apellido_Cli='{$apellido}', Direccion='{$direccion}', Correo='{$correo}', Telefono='{$telefono}' where CI_Cliente={$id}";
+    $id = $_POST["id_producto"];
+	if ($archivo) {
+        $sql = "UPDATE articulo 
+			set Id_Categoria='{$categoria}', 
+			Nombre_Art='{$nombre}', 
+			Color_Art='{$Color_Art}', 
+			Talla_Art='{$talla}', 
+			detalle='{$descripcion}',
+			foto= '{$archivo}',
+			precio={$precio} 
+		where Id_Articulo={$id}";
     }else{
-        $sql = "UPDATE cliente set CI_Cliente='{$ci}', Nombre_Cli='{$nombre}', Apellido_Cli='{$apellido}', Direccion='{$direccion}', Correo='{$correo}', Telefono='{$telefono}' where CI_Cliente={$id}";
+	$sql = "UPDATE articulo 
+			set Id_Categoria='{$categoria}', 
+			Nombre_Art='{$nombre}', 
+			Color_Art='{$Color_Art}', 
+			Talla_Art='{$talla}', 
+			detalle='{$descripcion}',
+			precio={$precio} 
+		where Id_Articulo={$id}";
     }
 
 	if (!$con->query($sql)) {
@@ -24,6 +51,6 @@
 		$con->close();		
 		echo 1;
 	}
-	
+	header("location:".CONTROLLER."product/");
 	
 ?>

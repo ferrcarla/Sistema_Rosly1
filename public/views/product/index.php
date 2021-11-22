@@ -43,12 +43,12 @@
                                         <td><?php echo $producto['catidad'] ?></td>
                                         <td><?php echo $producto['precio'] ?></td>
                                         <td>
-                                            <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal">
+                                            <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" onclick="obtener_datos(<?php echo $producto['Id_Articulo'] ?>)">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar">
+                                            <!-- <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar">
                                                 <i class="bi bi-trash-fill"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
@@ -69,10 +69,10 @@
             rules: {
                 NOMBRE: {
                     required: true,
-                    maxlength: 15
+                    maxlength: 50
                 },
                 imagen: {
-                    required: true                    
+                    required: true
                 },
                 categoria: {
                     required: true
@@ -84,8 +84,7 @@
                     required: true
                 },
                 descripcion: {
-                    required: true,
-                    maxlength: 10,
+                    required: true,                    
                     maxlength: 50,
                     minlength: 5
                 },
@@ -93,13 +92,90 @@
                     required: true,
                     maxlength: 4
                 }
-            },                
+            },
             submitHandler: function(form) {
-                event.preventDefault();                
+                event.preventDefault();
+                transicion("Procesando Espere....");
+                $('#btnRegistrar').attr({
+                    disabled: 'true'
+                });
+                form.submit();
+            }
+        });
+
+        $("#frmEditar").validate({
+            rules: {
+                NOMBRE: {
+                    required: true,
+                    maxlength: 50
+                },
+                imagen: {
+                    required: true
+                },
+                categoria: {
+                    required: true
+                },
+                talla: {
+                    required: true
+                },
+                color: {
+                    required: true
+                },
+                descripcion: {
+                    required: true,                    
+                    maxlength: 50,
+                    minlength: 5
+                },
+                precio: {
+                    required: true,
+                    maxlength: 4
+                }
+            },
+            submitHandler: function(form) {
+                event.preventDefault();
+                transicion("Procesando Espere....");
+                $('#btnRegistrar').attr({
+                    disabled: 'true'
+                });
                 form.submit();
             }
         });
     });
 
-    
+    function obtener_datos(id) {
+        $.ajax({
+            url: '../../models/product/datos_productos.php',
+            type: 'POST',
+            dataType: "json",
+            data: {
+                id_producto: id
+            }
+        }).done(function(datos) {
+            $("#id_producto").val(id);
+            $("#frmEditar [id=nombre_edit]").val(datos['producto']['Nombre_Art']);
+            $("#categoria_edit option").each(function() {
+                if ($(this).val() == datos['producto']['Id_Categoria']) {
+                    $(this).attr('selected', 'true');
+                }
+            });
+            $("#talla_edit option").each(function() {
+                if ($(this).val() == datos['producto']['Talla_Art']) {
+                    $(this).attr('selected', 'true');
+                }
+            });
+            $("#color_edit option").each(function() {
+                if ($(this).val() == datos['producto']['Color_Art']) {
+                    $(this).attr('selected', 'true');
+                }
+            });
+            $("#frmEditar [id=descripcion_edit]").val(datos['producto']['detalle']);
+            $("#frmEditar [id=precio_edit]").val(datos['producto']['precio']);            
+        }).fail(function(response) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'se produjo el siguiente error' + response,
+            });
+        });
+    }
 </script>
