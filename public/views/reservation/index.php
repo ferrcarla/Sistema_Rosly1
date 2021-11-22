@@ -63,8 +63,10 @@
 <?php require_once('registro_modal.php'); ?>
 <?php require_once('editar_modal.php'); ?>
 
-<script> 
- $("#frmEditar").validate({
+<script>
+    $(document).ready(function () {
+        
+        $("#frmRegistro").validate({
             rules: {
                 clientes: {
                     required: true,
@@ -73,12 +75,12 @@
                     required: true,
                 },
                 cantidad: {
-                    required: true,
-                   
-                    transicionSalir();
-                    $('#btnEditar').removeAttr('disabled');
-                });
-            }
+                    required: true
+                },   
+            },
+            submitHandler: function(form) {
+                alert('correcto');
+            }            
         });
     });
 

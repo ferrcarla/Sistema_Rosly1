@@ -10,9 +10,9 @@
             <div class="modal-body">
                 <form id="frmRegistrar">
                     <div class="form-group">
-                        <label for="cliente" class="col-form-label">Clientes:</label>
-                        <select class="form-control" name="categoria" id="categoria">
-                            <option value="0"></option>
+                        <label for="clientes" class="col-form-label">Clientes:</label>
+                        <select class="form-control" name="clientes" id="clientes">
+                            <option value="">Seleccione clientes...</option>
                             <option value="1">Clara</option>
                             <option value="2">Rosa</option>
                             <option value="3">Esther</option>
@@ -20,9 +20,9 @@
                      </div>
                        
                     <div class="form-group">
-                        <label for="categoria">Lista de productos</label>
-                        <select class="form-control" name="categoria" id="categoria">
-                            <option value="0"></option>
+                        <label for="productos">Lista de productos:</label>
+                        <select class="form-control" name="productos" id="productos">
+                            <option value="">Seleccione productos...</option>
                             <option value="1">Chompas</option>
                             <option value="2">Pantalones</option>
                             <option value="3">Poleras</option>
@@ -32,12 +32,12 @@
                         <label for="cantidad" class="col-form-label">Cantidad:</label>
                         <input type="text" class="form-control" id="cantidad" name="cantidad" maxlength ="3" required placeholder="cantidad">
                     </div>       
-                   <div class="float-right">
-                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar</button>
-                </div>
+                    <div class="float-right">
+                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+                    </div>
                 </form>
             </div>      
+        </div>
     </div>
-  </div>
 </div>
