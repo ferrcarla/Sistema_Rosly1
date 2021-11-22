@@ -8,11 +8,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form="frmEditar" method="post">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Clientes:</label>
-                        <select class="form-control" name="categorias_edit" id="categoria_edit">
-                            <option value="0"></option>
+                        <label for="clientes" class="col-form-label">Clientes:</label>
+                        <select class="form-control" name="clientes_edit" id="clientes_edit">
+                            <option value="">Seleccione cliente...</option>
                             <option value="1">Clara</option>
                             <option value="2">Rosa</option>
                             <option value="3">Esther</option>
@@ -20,16 +20,16 @@
                      </div>
                        
                     <div class="form-group">
-                        <label for="ci">Lista de productos</label>
-                        <select class="form-control" name="categorias_id_edit" id="categoria_id_edit">
-                            <option value="0"></option>
+                        <label for="productos">Lista de productos</label>
+                        <select class="form-control" name="productos_id_edit" id="productos_id_edit">
+                            <option value="">Seleccione productos...</option>
                             <option value="1">Chompas</option>
                             <option value="2">Pantalones</option>
                             <option value="3">Poleras</option>
                         </select>                    
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Cantidad:</label>
+                        <label for="cantidad" class="col-form-label">Cantidad:</label>
                         <input type="text" class="form-control" id="cantidad_edit" name="cantidad_edit" maxlength ="3" required placeholder="cantidad">
                     </div>       
                    <div class="float-right">

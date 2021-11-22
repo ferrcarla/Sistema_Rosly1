@@ -30,7 +30,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($salidas as $salida) : ?>
+                                <?php foreach ($salidas as $salidas) : ?>
                                     <tr>
                                         <td><?php echo $salida['Nombre_Cli'] . ' ' . $salida['Apellido_Cli']; ?></td>
                                         <td><?php echo $salida['Fecha']; ?></td>
@@ -65,7 +65,7 @@
                 clientes: {
                     required: true,
                 },
-                categoria: {
+                productos: {
                     required: true,
                 },
                 cantidad: {
