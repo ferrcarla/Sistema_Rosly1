@@ -2,7 +2,8 @@
 	require_once ("../../config/db.php");
 	require_once ("../../config/conection.php");
 	$id=$_REQUEST['id_cliente'];	
-	$sql="SELECT * FROM cliente";
+	$sql="SELECT * FROM cliente
+		where CI_Cliente = {$id}";
 	if($result = $con->query($sql)){
 		if($result->num_rows > 0){
 			$jsondata['estado']="correcto";

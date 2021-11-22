@@ -40,13 +40,13 @@
                                         <td><?php echo $cliente['Direccion'] ?></td>
                                         <td><?php echo $cliente['Correo'] ?></td>
                                         <td><?php echo $cliente['Telefono'] ?></td>
-                                        <td>
+                                        <td class="text-center">
                                             <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" onclick="obtener_datos(<?php echo $cliente['CI_Cliente'] ?>)">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar" onclick="eliminar_datos(<?php echo $cliente['CI_Cliente'] ?>)">
+                                            <!-- <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar" onclick="eliminar_datos(<?php echo $cliente['CI_Cliente'] ?>)">
                                                 <i class="bi bi-trash-fill"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
@@ -145,34 +145,37 @@
         
         $("#frmEditar").validate({
             rules: {
-                nombre: {
+                nombre_edit: {
                     required: true,
                     minlength: 3,
                     maxlength: 25,
                 },
-                apellido: {
+                apellido_edit: {
                     required: true,
                     minlength: 3,
                     maxlength: 30,
                 },
-                ci: {
+                ci_edit: {
                     required: true,
                     minlength: 5,
                     remote: {
                         url: "../../models/client/verifica.php",
                         type: 'post',
                         data: {
+                            ci_before: function() {
+                                return $("#id_cliente_before").val();
+                            },
                             ci: function() {
-                                return $("#ci").val();
+                                return $("#ci_edit").val();
                             },
                             type: 1
                         }
                     }
                 },
-                direccion: {
+                direccion_edit: {
                     required: true,
                 },
-                telefono: {
+                telefono_edit: {
                     required: true,
                     number: true,
                     minlength: 8,
@@ -180,12 +183,46 @@
                 }
             },
             messages: {
-                ci: {
+                ci_edit: {
                     remote: "El numero de C.I. ya esta registrado verifique",
                 },
             },
             submitHandler: function(form) {
-               alert('correcto');            
+               event.preventDefault();
+                $.ajax({
+                    url: '../../models/client/editar_model.php',
+                    type: 'post',
+                    data: $("#frmEditar").serialize(),
+                    beforeSend: function() {
+                        transicion("Procesando Espere....");
+                        $('#btnEditar').attr({
+                            disabled: 'true'
+                        });
+                    }                    
+                }).done(function(response){                    
+                    if (response == 1) {
+                        $('#btneditar').attr({
+                            disabled: 'true'
+                        });                        
+                        transicionSalir();
+                        mensajes_alerta('DATOS GUARDADOS EXITOSAMENTE !! ', 'success', 'GUARDAR DATOS');
+                        transicion("Procesando Espere....");
+                        setTimeout(function() {
+                            window.location.href = '<?php echo CONTROLLER ?>client/index.php';
+                        }, 3000);
+                    } else {
+                        transicionSalir();
+                        mensajes_alerta('ERROR AL REGISTRAR verifique los datos!! ' + response, 'error', 'GUARDAR DATOS');
+                    }
+                }).fail(function (response){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al registrar',
+                        text: 'se produjo el siguiente error'+ response,                    
+                    })                  
+                    transicionSalir();
+                    $('#btnEditar').removeAttr('disabled');
+                });
             }
         });
     });
@@ -197,34 +234,16 @@
             dataType: "json",
             data: {
                 id_cliente: id
-            },
-            success: function(datos) {
-                $("#frmEditar [id=nombre_edit]").val(datos['cliente']['Nombre_Cli']);
-                $("#frmEditar [id=apellido_edit]").val(datos['cliente']['paterno']);
-                $("#frmEditar [id=materno]").val(datos['cliente']['materno']);
-                $("#frmEditar [id=celular]").val(datos['cliente']['celular']);
-                $("#frmEditar [id=nombre_usuario]").val(datos['cliente']['nombre_usuario']);
-                $("#id_role option").each(function() {
-                    if ($(this).val() == datos['docente']['id_rol']) {
-                        //console.log('ok: '+$(this).val());
-                        $(this).attr('selected', 'true');
-                    }
-                });
-                $("#id_docente").val(datos['docente']['id_docente']);
-                $("#id_usuario").val(datos['docente']['id_usuario']);
             }
-        }).done(function(datos){
+        }).done(function(datos){            
+            $("#id_cliente_before").val(id);
             $("#frmEditar [id=nombre_edit]").val(datos['cliente']['Nombre_Cli']);
-            $("#frmEditar [id=apellido_edit]").val(datos['cliente']['paterno']);
-            $("#frmEditar [id=materno]").val(datos['cliente']['materno']);
-            $("#frmEditar [id=celular]").val(datos['cliente']['celular']);
-            $("#frmEditar [id=nombre_usuario]").val(datos['cliente']['nombre_usuario']);
-            $("#id_role option").each(function() {
-                if ($(this).val() == datos['docente']['id_rol']) {
-                    //console.log('ok: '+$(this).val());
-                    $(this).attr('selected', 'true');
-                }
-            });            
+            $("#frmEditar [id=apellido_edit]").val(datos['cliente']['Apellido_Cli']);
+            $("#frmEditar [id=ci_edit]").val(datos['cliente']['CI_Cliente']);
+            $("#frmEditar [id=telefono_edit]").val(datos['cliente']['Telefono']);
+            $("#frmEditar [id=correo_edit]").val(datos['cliente']['Correo']);
+            
+            $("#direccion_edit").val(datos['cliente']['DIreccion']);
         }).fail(function (response){
             Swal.fire({
                 icon: 'error',

@@ -7,10 +7,17 @@
     $columna="CI_Cliente";
     $ci=$_REQUEST['ci'];
 
-
-    $sql="SELECT * 
-        FROM cliente 
-        WHERE CI_Cliente = '{$ci}' ";
+    if ($_REQUEST['type'] == '1') {
+        $ci_original = $_REQUEST['ci_before'];
+        $sql="SELECT * 
+            FROM cliente 
+            WHERE CI_Cliente = '{$ci}'
+            and CI_Cliente <> '{$ci_original}'";
+    } else {
+        $sql="SELECT * 
+            FROM cliente 
+            WHERE CI_Cliente = '{$ci}' ";
+    }
     if($resultado=$con->query($sql)){
         $nrodefilas=$resultado->num_rows;
         if($nrodefilas == 0)
