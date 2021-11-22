@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" id="frmRegistro">                    
+                <form method="post" id="frmRegistro" action="">                    
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Producto:</label>
                         <select class="form-control" name="producto_id" id="producto_id" required placeholder="seleccione producto">

@@ -8,7 +8,7 @@
         <a href="<?php echo CONTROLLER; ?>product/" class="d-block text-light p-3"><i class="icon ion-md-people mr-2 tead"></i> Productos</a>
         <a href="<?php echo CONTROLLER; ?>in/" class="d-block text-light p-3"><i class="icon ion-md-stats mr-2 tead"></i> Entradas</a>
         <a href="<?php echo CONTROLLER; ?>out/" class="d-block text-light p-3"><i class="icon ion-md-person mr-2 tead"></i> Salidas</a>
-        <a href="#" class="d-block text-light p-3"><i class="icon ion-md-people mr-2 tead"></i> Pedidos</a>
+        <a href="<?php echo CONTROLLER; ?>reservation/" class="d-block text-light p-3"><i class="icon ion-md-people mr-2 tead"></i> Reserva</a>
         <a href="#" class="d-block text-light p-3"><i class="icon ion-md-settings mr-2 tead"></i> Salir</a>
     </div>
 </div>

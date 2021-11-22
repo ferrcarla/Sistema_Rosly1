@@ -63,18 +63,18 @@
 <?php require_once('editar_modal.php'); ?>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function() {        
         $("#frmRegistro").validate({
             rules: {
                 nombre: {
                     required: true,
                     minlength: 3,
-                    maxlength: 25,
+                    maxlength: 25
                 },
                 apellido: {
                     required: true,
                     minlength: 3,
-                    maxlength: 30,
+                    maxlength: 30
                 },
                 ci: {
                     required: true,
@@ -90,22 +90,56 @@
                     }
                 },
                 direccion: {
-                    required: true,
+                    required: true
                 },
                 telefono: {
                     required: true,
                     number: true,
                     minlength: 8,
-                    maxlength: 10,
+                    maxlength: 10
                 }
             },
             messages: {
                 ci: {
-                    remote: "El numero de C.I. ya esta registrado verifique",
-                },
+                    remote: "El numero de C.I. ya esta registrado verifique"
+                }
             },
-            submitHandler: function(form) {
-                alert('correcto');
+            submitHandler: function(form, event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '../../models/client/registro_model.php',
+                    type: 'post',
+                    data: $("#frmRegistro").serialize(),
+                    beforeSend: function() {
+                        transicion("Procesando Espere....");
+                        $('#btnRegistrar').attr({
+                            disabled: 'true'
+                        });
+                    }                    
+                }).done(function(response){                    
+                    if (response == 1) {
+                        $('#btnRegistrar').attr({
+                            disabled: 'true'
+                        });                        
+                        transicionSalir();
+                        mensajes_alerta('DATOS GUARDADOS EXITOSAMENTE !! ', 'success', 'GUARDAR DATOS');
+                        transicion("Procesando Espere....");
+                        setTimeout(function() {
+                            window.location.href = '<?php echo CONTROLLER ?>client/index.php';
+                        }, 3000);
+                    } else {
+                        transicionSalir();
+                        mensajes_alerta('ERROR AL REGISTRAR verifique los datos!! ' + response, 'error', 'GUARDAR DATOS');
+                    }
+                }).fail(function (response){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al registrar',
+                        text: 'se produjo el siguiente error'+ response,                    
+                    })                  
+                    transicionSalir();
+                    $('#btnRegistrar').removeAttr('disabled');
+                });
             }
         });
         
@@ -130,7 +164,8 @@
                         data: {
                             ci: function() {
                                 return $("#ci").val();
-                            }
+                            },
+                            type: 1
                         }
                     }
                 },

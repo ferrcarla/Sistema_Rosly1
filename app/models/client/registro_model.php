@@ -6,8 +6,7 @@
     // definiendo variables
     $nombre   = trim($_POST["nombre"]);
 	$apellido   = trim($_POST["apellido"]);
-    $ci  = trim($_POST["ci"]);
-    $materno  = trim($_POST["materno"]);
+    $ci  = trim($_POST["ci"]);    
     $telefono  = trim($_POST["telefono"]);
     $correo = trim($_POST["correo"]);
     $direccion = trim($_POST["direccion"]);
@@ -16,8 +15,7 @@
 	$sqluser="INSERT INTO cliente(CI_Cliente, Nombre_Cli, Apellido_Cli, Direccion, Correo, Telefono) VALUES({$ci}, '{$nombre}', '{$apellido}', '{$direccion}', '{$correo}', '{$telefono}'  )";
 	if (!$con->query($sqluser)) 
 	{
-		echo "Falló la insercion:  cliente(" . $con->errno . ") " . $con->error;
-		exit;
+		echo "Falló la insercion:  cliente(" . $con->errno . ") " . $con->error;		
 	}else{
         echo 1;
     }
