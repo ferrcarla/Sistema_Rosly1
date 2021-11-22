@@ -213,6 +213,24 @@
                 $("#id_docente").val(datos['docente']['id_docente']);
                 $("#id_usuario").val(datos['docente']['id_usuario']);
             }
+        }).done(function(datos){
+            $("#frmEditar [id=nombre_edit]").val(datos['cliente']['Nombre_Cli']);
+            $("#frmEditar [id=apellido_edit]").val(datos['cliente']['paterno']);
+            $("#frmEditar [id=materno]").val(datos['cliente']['materno']);
+            $("#frmEditar [id=celular]").val(datos['cliente']['celular']);
+            $("#frmEditar [id=nombre_usuario]").val(datos['cliente']['nombre_usuario']);
+            $("#id_role option").each(function() {
+                if ($(this).val() == datos['docente']['id_rol']) {
+                    //console.log('ok: '+$(this).val());
+                    $(this).attr('selected', 'true');
+                }
+            });            
+        }).fail(function (response){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'se produjo el siguiente error'+ response,                    
+            });            
         });
     }
 
