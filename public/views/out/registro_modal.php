@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="frmRegistrar">
                     <div class="form-group">
                         <label for="cliente" class="col-form-label">Clientes:</label>
                         <select class="form-control" name="categoria" id="categoria">

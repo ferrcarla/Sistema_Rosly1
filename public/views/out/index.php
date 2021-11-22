@@ -25,31 +25,31 @@
                                     <th>Cliente</th>
                                     <th>Fecha</th>
                                     <th>Cantidad</th>
-                                    <th>Articulo</th>                                    
+                                    <th>Articulo</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($salidas as $salida) : ?>
                                     <tr>
-                                        <td><?php echo $salida['Nombre_Cli']. ' '. $salida['Apellido_Cli']; ?></td>
+                                        <td><?php echo $salida['Nombre_Cli'] . ' ' . $salida['Apellido_Cli']; ?></td>
                                         <td><?php echo $salida['Fecha']; ?></td>
                                         <td><?php echo $salida['Cantidad']; ?></td>
                                         <td><?php echo $salida['Nombre_Art']; ?></td>
                                         <td>
-                                            <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" >
+                                            <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar" >
-                                                 <i class="bi bi-trash-fill"></i>
-                                             </a>
+                                            <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </a>
                                         </td>
                                     </tr>
-                                 <?php endforeach ?>
-                             </tbody>
+                                <?php endforeach ?>
+                            </tbody>
                         </table>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </div>
@@ -59,25 +59,30 @@
 <?php require_once('editar_modal.php'); ?>
 
 <script>
-      $("#frmEditar").validate({
-        rules: {
-            clientes: {
-                required: true,
-            },
-            categoria: {
-                required: true,
-            }, 
-            cantidad: {
-                required: true,
-                maxlength: 3,
-                number: true
+    $(document).ready(function() {
+        $("#frmRegistrar").validate({
+            rules: {
+                clientes: {
+                    required: true,
+                },
+                categoria: {
+                    required: true,
+                },
+                cantidad: {
+                    required: true,
+                    maxlength: 3,
+                    number: true
+                },
             },
             submitHandler: function(form) {
-                alert('correcto');            
+                alert('correcto');
             }
-        });        
+        });
+
+
 
     });
+
 
     function obtener_datos(id) {
         $.ajax({
