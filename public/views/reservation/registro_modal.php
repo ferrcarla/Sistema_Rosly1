@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registro de clientes</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Reservas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -10,33 +10,27 @@
             <div class="modal-body">
                 <form id="frmRegistro" method="post" action="#">
                     <div class="form-group">
-                        <label for="nombre" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" maxlength="15" required placeholder="Escribe nombre aqui">
+                        <label for="nombre" class="col-form-label">Clientes:</label>
+                        <select class="form-control" name="categorias" id="categoria">
+                            <option value="0"></option>
+                            <option value="1">Clara</option>
+                            <option value="2">Rosa</option>
+                            <option value="3">Esther</option>
+                         </select>     
+                     </div>
+                    <div class="form-group">
+                        <label for="apellido" class="col-form-label">Productos:</label>
+                        <select class="form-control" name="categorias" id="categoria">
+                            <option value="0"></option>
+                            <option value="1">Chompas</option>
+                            <option value="2">Pantalones</option>
+                            <option value="3">Poleras</option>
+                        </select>                    
                     </div>
                     <div class="form-group">
-                        <label for="apellido" class="col-form-label">Apellido:</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" maxlength="30" required placeholder="Escribe apellido aqui">
-                    </div>
-                    <div class="form-group">
-                        <label for="ci">CI</label>
-                        <input type="text" class="form-control" id="ci" name="ci" required placeholder="ci">
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="telefono">Telefono</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono" required placeholder="telefono" maxlength="10">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="correo">Correo</label>
-                            <input type="email" class="form-control" id="correo" name="correo" required placeholder="escribe tu email">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="direccion" class="col-form-label">Dirección:</label>
-                        <textarea class="form-control" id="direccion" name="direccion" placeholder="Dirección"></textarea>
-                    </div>
+                        <label for="recipient-name" class="col-form-label">Cantidad:</label>
+                        <input type="text" class="form-control" id="cantidad" name="cantidad" maxlength ="3" required placeholder="cantidad">
+                    </div>       
                     <div class="float-right">
                         <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar</button>
