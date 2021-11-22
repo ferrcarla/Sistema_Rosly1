@@ -36,7 +36,6 @@
                                 <option value="2">M</option>
                                 <option value="3">L</option>
                             </select>
-
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputState">Color</label>
@@ -47,9 +46,7 @@
                                 <option value="3">Blanco</option>
                             </select>
                         </div>
-
                     </div>
-
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Descripcion:</label>
                         <textarea class="form-control" id="descripcion"></textarea>
@@ -63,7 +60,7 @@
                         <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar</button>
                     </div>
                 </form>
-            </div>
-            
+            </div>            
+        </div>
     </div>
 </div>
