@@ -60,6 +60,8 @@
 </div>
 
 <?php require_once('registro_modal.php'); ?>
+<?php require_once('editar_modal.php'); ?>
+
 <script>
     $(document).ready(function() {
         $("#frmRegistro").validate({
@@ -106,6 +108,51 @@
                 alert('correcto');
             }
         });
+        
+        $("#frmEditar").validate({
+            rules: {
+                nombre: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 25,
+                },
+                apellido: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 30,
+                },
+                ci: {
+                    required: true,
+                    minlength: 5,
+                    remote: {
+                        url: "../../models/client/verifica.php",
+                        type: 'post',
+                        data: {
+                            ci: function() {
+                                return $("#ci").val();
+                            }
+                        }
+                    }
+                },
+                direccion: {
+                    required: true,
+                },
+                telefono: {
+                    required: true,
+                    number: true,
+                    minlength: 8,
+                    maxlength: 10,
+                }
+            },
+            messages: {
+                ci: {
+                    remote: "El numero de C.I. ya esta registrado verifique",
+                },
+            },
+            submitHandler: function(form) {
+               alert('correcto');            
+            }
+        });
     });
 
     function obtener_datos(id) {
@@ -135,6 +182,6 @@
     }
 
     function eliminar_datos(id) {
-        $("#id_eliminar").val(id);
+        // $("#id_eliminar").val(id);
     }
 </script>

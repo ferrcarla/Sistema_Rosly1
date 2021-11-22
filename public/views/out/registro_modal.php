@@ -29,7 +29,7 @@
                         </select>                    
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">cantidad:</label>
+                        <label for="recipient-name" class="col-form-label">Cantidad:</label>
                         <input type="text" class="form-control" id="cantidad" name="cantidad" maxlength ="3" required placeholder="cantidad">
                     </div>       
                    <div class="float-right">
