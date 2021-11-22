@@ -18,9 +18,16 @@ $sql = "SELECT a.Id_Articulo,
     where a.Id_Categoria = c.Id_Categoria
 ";
 
-if (!($productos = $con->query($sql))) {
+$sql_categorias = "Select * from categoria";
+
+if (!($productos = $con->query($sql)) ) {
     echo "Falló SELECT: (" . $con->error . ") " . $con->error;
     die();
+}
+$con->close();
+$con = connect();
+if (!($categorias = $con->query($sql_categorias))) {
+    echo "Falló SELECT: (" . $con->errno . ") " . $con->error;
 }
 $con->close();
 //Variables para enviar a la plantilla son necesarias

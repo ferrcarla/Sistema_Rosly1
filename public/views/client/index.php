@@ -103,26 +103,25 @@
                 },
             },
             submitHandler: function(form) {
-               alert('correcto');            
+                alert('correcto');
             }
-        });        
+        });
     });
 
     function obtener_datos(id) {
         $.ajax({
-            url: '../../models/client/datos_docente.php',
+            url: '../../models/client/datos_cliente.php',
             type: 'POST',
             dataType: "json",
             data: {
-                id_docente: id
+                id_cliente: id
             },
             success: function(datos) {
-                //console.log(datos);
-                $("#frmEditar [id=nombre]").val(datos['docente']['nombre']);
-                $("#frmEditar [id=paterno]").val(datos['docente']['paterno']);
-                $("#frmEditar [id=materno]").val(datos['docente']['materno']);
-                $("#frmEditar [id=celular]").val(datos['docente']['celular']);
-                $("#frmEditar [id=nombre_usuario]").val(datos['docente']['nombre_usuario']);
+                $("#frmEditar [id=nombre_edit]").val(datos['cliente']['Nombre_Cli']);
+                $("#frmEditar [id=apellido_edit]").val(datos['cliente']['paterno']);
+                $("#frmEditar [id=materno]").val(datos['cliente']['materno']);
+                $("#frmEditar [id=celular]").val(datos['cliente']['celular']);
+                $("#frmEditar [id=nombre_usuario]").val(datos['cliente']['nombre_usuario']);
                 $("#id_role option").each(function() {
                     if ($(this).val() == datos['docente']['id_rol']) {
                         //console.log('ok: '+$(this).val());
