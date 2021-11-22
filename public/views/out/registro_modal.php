@@ -10,8 +10,8 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Clientes:</label>
-                        <select class="form-control" name="categorias" id="categoria">
+                        <label for="cliente" class="col-form-label">Clientes:</label>
+                        <select class="form-control" name="categoria" id="categoria">
                             <option value="0"></option>
                             <option value="1">Clara</option>
                             <option value="2">Rosa</option>
@@ -20,8 +20,8 @@
                      </div>
                        
                     <div class="form-group">
-                        <label for="ci">Lista de productos</label>
-                        <select class="form-control" name="categorias" id="categoria">
+                        <label for="categoria">Lista de productos</label>
+                        <select class="form-control" name="categoria" id="categoria">
                             <option value="0"></option>
                             <option value="1">Chompas</option>
                             <option value="2">Pantalones</option>
@@ -29,7 +29,7 @@
                         </select>                    
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Cantidad:</label>
+                        <label for="cantidad" class="col-form-label">Cantidad:</label>
                         <input type="text" class="form-control" id="cantidad" name="cantidad" maxlength ="3" required placeholder="cantidad">
                     </div>       
                    <div class="float-right">

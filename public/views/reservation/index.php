@@ -63,3 +63,52 @@
 <?php require_once('registro_modal.php'); ?>
 <?php require_once('editar_modal.php'); ?>
 
+<script> 
+ $("#frmEditar").validate({
+            rules: {
+                clientes: {
+                    required: true,
+                },
+                productos: {
+                    required: true,
+                },
+                cantidad: {
+                    required: true,
+                   
+                    transicionSalir();
+                    $('#btnEditar').removeAttr('disabled');
+                });
+            }
+        });
+    });
+
+    function obtener_datos(id) {
+        $.ajax({
+            url: '../../models/client/datos_cliente.php',
+            type: 'POST',
+            dataType: "json",
+            data: {
+                id_cliente: id
+            }
+        }).done(function(datos){            
+            $("#id_cliente_before").val(id);
+            $("#frmEditar [id=nombre_edit]").val(datos['cliente']['Nombre_Cli']);
+            $("#frmEditar [id=apellido_edit]").val(datos['cliente']['Apellido_Cli']);
+            $("#frmEditar [id=ci_edit]").val(datos['cliente']['CI_Cliente']);
+            $("#frmEditar [id=telefono_edit]").val(datos['cliente']['Telefono']);
+            $("#frmEditar [id=correo_edit]").val(datos['cliente']['Correo']);
+            
+            $("#direccion_edit").val(datos['cliente']['DIreccion']);
+        }).fail(function (response){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'se produjo el siguiente error'+ response,                    
+            });            
+        });
+    }
+
+    function eliminar_datos(id) {
+        // $("#id_eliminar").val(id);
+    }
+</script>

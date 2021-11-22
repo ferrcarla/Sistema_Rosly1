@@ -57,3 +57,56 @@
 
 <?php require_once('registro_modal.php'); ?>
 <?php require_once('editar_modal.php'); ?>
+
+<script>
+      $("#frmEditar").validate({
+        rules: {
+            clientes: {
+                required: true,
+            },
+            categoria: {
+                required: true,
+            }, 
+            cantidad: {
+                required: true,
+                maxlength: 3,
+                number: true
+            },
+            submitHandler: function(form) {
+                alert('correcto');            
+            }
+        });        
+
+    });
+
+    function obtener_datos(id) {
+        $.ajax({
+            url: '../../models/client/datos_docente.php',
+            type: 'POST',
+            dataType: "json",
+            data: {
+                id_docente: id
+            },
+            success: function(datos) {
+                //console.log(datos);
+                $("#frmEditar [id=nombre]").val(datos['docente']['nombre']);
+                $("#frmEditar [id=paterno]").val(datos['docente']['paterno']);
+                $("#frmEditar [id=materno]").val(datos['docente']['materno']);
+                $("#frmEditar [id=celular]").val(datos['docente']['celular']);
+                $("#frmEditar [id=nombre_usuario]").val(datos['docente']['nombre_usuario']);
+                $("#id_role option").each(function() {
+                    if ($(this).val() == datos['docente']['id_rol']) {
+                        //console.log('ok: '+$(this).val());
+                        $(this).attr('selected', 'true');
+                    }
+                });
+                $("#id_docente").val(datos['docente']['id_docente']);
+                $("#id_usuario").val(datos['docente']['id_usuario']);
+            }
+        });
+    }
+
+    function eliminar_datos(id) {
+        $("#id_eliminar").val(id);
+    }
+</script>
