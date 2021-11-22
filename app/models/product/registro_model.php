@@ -5,40 +5,29 @@
     // echo "<pre>";print_r ($_REQUEST);echo "</pre>";die();
     echo "<pre>";print_r ($_REQUEST);echo "</pre>";
 
-    if (!isset($_POST['imagen'])){
-        $nombre_archivo =$_FILES['imagen']['name'];
-        $tipo_archivo = $_FILES['imagen']['type'];
-        $tamano_archivo = $_FILES['imagen']['size'];
-        $archivo= $_FILES['imagen']['tmp_name'];
-    } else{
-        $nombre_archivo="";
-    }
+    if (isset($_FILES['imagen'])) {
+        $errors = array();
+        $file_name = $_FILES['imagen']['name'];
+        $file_size = $_FILES['imagen']['size'];
+        $file_tmp = $_FILES['imagen']['tmp_name'];
+        $file_type = $_FILES['imagen']['type'];
+        $file_ext = strtolower(end(explode('.', $_FILES['imagen']['name'])));
 
-    if ($nombre_archivo!="")
-    {
-        //Limitar el tipo de archivo y el tamaño    
-        if (!((strpos($tipo_archivo, "gif") || strpos($tipo_archivo, "jpeg") || strpos($tipo_archivo, "png")) && ($tamano_archivo  < 50000000))) 
-        {
-            echo "El tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Se permiten archivos de 5 Mb máximo.</td></tr></table>";
+        $expensions = array("jpeg", "jpg", "png");
+
+        if (in_array($file_ext, $expensions) === false) {
+            $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
         }
-        else
-        {
-            $file = $_FILES['imagen']['name'];
-            $res = explode(".", $nombre_archivo);
-            $extension = $res[count($res)-1];
-            $nombre= date("YmdHis")."." . $extension; //renombrarlo como nosotros queremos
-            $dirtemp = "../../upload/publicidad/".$nombre."";//Directorio temporaral para subir el fichero
-            echo "<pre>";print_r ($_POST);echo "</pre>";
-            if (is_uploaded_file($_FILES['imagen']['tmp_name'])) {
-                copy($_FILES['imagen']['tmp_name'], $dirtemp);
 
-                unlink($dirtemp); //Borrar el fichero temporal
-               }
-            else
-            {
-                echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-            }
+        if ($file_size > 2097152) {
+            $errors[] = 'File size must be excately 2 MB';
+        }
 
+        if (empty($errors) == true) {
+            move_uploaded_file($file_tmp, "images/" . $file_name);
+            echo "Success";
+        } else {
+            print_r($errors);
         }
     }
 
