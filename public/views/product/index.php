@@ -67,9 +67,28 @@
     $(document).ready(function() {
         $("#frmEditar").validate({
             rules: {
-                nombre: {
+                nombre_id: {
                     required: true,
                     maxlength: 15,
+                },
+                imagen: {
+                    required: false,
+                    extension: 'jpg|png|jpeg',
+                },
+                categoria: {
+                    required: true,
+                },
+                talla: {
+                    required: true,
+                },
+                color: {
+                    required: true,
+                },
+                descripcion: {
+                    required: true,
+                    maxlength: 10,
+                    maxlength: 50,
+                    minlength: 5,
                 },
                 precio: {
                     required: true,
@@ -82,5 +101,7 @@
         });
     });
 
-
+    function eliminar_datos(id) {
+        $("#id_eliminar").val(id);
+    } 
 </script>

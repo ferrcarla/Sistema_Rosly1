@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="frmRegistro" meihod="post"> 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nombre del producto:</label>
                         <input type="text" class="form-control" id="name" name="nombre" maxlength="15" required placeholder="Escribe aqui">
@@ -36,7 +36,6 @@
                                 <option value="2">M</option>
                                 <option value="3">L</option>
                             </select>
-
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputState">Color</label>
@@ -47,23 +46,23 @@
                                 <option value="3">Blanco</option>
                             </select>
                         </div>
-
                     </div>
-
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Descripcion:</label>
-                        <textarea class="form-control" id="descripcion"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Precio:</label>
-                        <input type="text" class="form-control" id="precio" name="precio" maxlength="4" required placeholder>
-                    </div>
-                    <div class="float-right">
-                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+                       
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Descripcion:</label>
+                            <textarea class="form-control" id="descripcion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Precio:</label>
+                            <input type="text" class="form-control" id="precio" name="precio" maxlength="4" required placeholder>
+                        </div>
+                        <div class="float-right">
+                            <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+                        </div>
                     </div>
                 </form>
-            </div>
-            
+            </div>            
+        </div>
     </div>
 </div>
