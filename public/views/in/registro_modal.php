@@ -2,14 +2,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registro de Productos</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registro de Entrada</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" id=frmRegistro>
-                    <div>
+                <form method="post" id="frmRegistro">                    
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Producto:</label>
                         <select class="form-control" name="producto_id" id="producto_id" required placeholder="seleccione producto">
                             <option value="">seleccione producto</option>
                             <option value="1">Chompas</option>

@@ -78,5 +78,21 @@
                alert('correcto');            
             }
         });        
+
+        $("#frmEditar").validate({
+            rules: {
+                producto_id: {
+                    required: true,
+                },
+                cantidad: {
+                    required: true,
+                    maxlength: 3,
+                    number: true,
+                },               
+            },
+            submitHandler: function(form) {
+               alert('correcto');            
+            }
+        });        
     });
 </script>

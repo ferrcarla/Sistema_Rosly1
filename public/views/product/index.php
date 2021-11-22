@@ -43,10 +43,10 @@
                                         <td><?php echo $producto['catidad'] ?></td>
                                         <td><?php echo $producto['precio'] ?></td>
                                         <td>
-                                            <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" onclick="obtener_datos(<?php echo $producto['Id_Articulo'] ?>)">
+                                            <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar" onclick="eliminar_datos(<?php echo $producto['Id_Articulo'] ?>)">
+                                            <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </td>
@@ -61,3 +61,26 @@
     </div>
 </div>
 <?php require_once('registro_modal.php'); ?>
+<?php require_once('editar_modal.php'); ?>
+
+<script>
+    $(document).ready(function() {
+        $("#frmEditar").validate({
+            rules: {
+                nombre: {
+                    required: true,
+                    maxlength: 15,
+                },
+                precio: {
+                    required: true,
+                    maxlength: 4,
+                },
+            },                
+            submitHandler: function(form) {
+               alert('correcto');            
+            }
+        });
+    });
+
+
+</script>
