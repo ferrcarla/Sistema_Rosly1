@@ -22,24 +22,20 @@
                         <table class="display table table-light" id="dataTable">
                             <thead>
                                 <tr>
-                                    <th>CI</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    <th>Dirección</th>
-                                    <th>Correo</th>
-                                    <th>Telefono</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Cantidad</th>
+                                    <th>Articulo</th>                                    
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($entradas as $entrada) : ?>
+                                <?php foreach ($salidas as $salida) : ?>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?php echo $salida['Nombre_Cli']. ' '. $salida['Apellido_Cli']; ?></td>
+                                        <td><?php echo $salida['Fecha']; ?></td>
+                                        <td><?php echo $salida['Cantidad']; ?></td>
+                                        <td><?php echo $salida['Nombre_Art']; ?></td>
                                         <td>
                                             <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" >
                                                 <i class="bi bi-pencil-square"></i>

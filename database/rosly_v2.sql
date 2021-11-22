@@ -38,7 +38,7 @@ CREATE TABLE `articulo` (
   `catidad` int(11) NOT NULL,
   `foto` varchar(255) NOT NULL,
   `precio` int(11) NOT NULL,
-  `fecha_creacion` date NOT NULL DEFAULT current_timestamp()
+  `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

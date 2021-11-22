@@ -7,8 +7,16 @@ require_once("../../config/conection.php");
 //Variables para enviar a la plantilla
 
 
-$sql = "SELECT *
-    FROM entrada
+$sql = "SELECT e.Id_Entrada,
+    e.Fecha_,
+    u.Nombre as nombre_usuario,
+    e.Cantidad,
+    a.Nombre_Art
+    FROM entrada e, 
+    usuario u, 
+    articulo a
+    where e.Id_Usuario = u.Id_Usuario
+    and e.Id_Articulo = a.Id_Articulo
 ";
 if (!($entradas = $con->query($sql))) {
     echo "Falló SELECT: (" . $con->errno . ") " . $con->error;
