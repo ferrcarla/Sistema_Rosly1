@@ -61,7 +61,7 @@
     </div>
 </div>
 <?php require_once('registro_modal.php'); ?>
-
+<?php require_once('editar_modal.php'); ?>
 
 <script>
     $(document).ready(function() {
