@@ -95,7 +95,8 @@
                 }
             },                
             submitHandler: function(form) {
-               alert('correcto');            
+                event.preventDefault();                
+                form.submit();
             }
         });
     });

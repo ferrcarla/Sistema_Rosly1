@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="frmRegistro" method="post" enctype="multipart/form-data"> 
+                <form id="frmRegistro" method="post" enctype="multipart/form-data" action="../../models/product/registro_model.php"> 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nombre del producto:</label>
                         <input type="text" class="form-control" id="name" name="nombre" maxlength="15" required placeholder="Escribe aqui">
