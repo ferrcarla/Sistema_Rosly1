@@ -61,39 +61,38 @@
     </div>
 </div>
 <?php require_once('registro_modal.php'); ?>
-<?php require_once('editar_modal.php'); ?>
+
 
 <script>
     $(document).ready(function() {
-        $("#frmEditar").validate({
+        $("#frmRegistro").validate({
             rules: {
-                nombre_id: {
+                NOMBRE: {
                     required: true,
-                    maxlength: 15,
+                    maxlength: 15
                 },
                 imagen: {
-                    required: false,
-                    extension: 'jpg|png|jpeg',
+                    required: true                    
                 },
                 categoria: {
-                    required: true,
+                    required: true
                 },
                 talla: {
-                    required: true,
+                    required: true
                 },
                 color: {
-                    required: true,
+                    required: true
                 },
                 descripcion: {
                     required: true,
                     maxlength: 10,
                     maxlength: 50,
-                    minlength: 5,
+                    minlength: 5
                 },
                 precio: {
                     required: true,
-                    maxlength: 4,
-                },
+                    maxlength: 4
+                }
             },                
             submitHandler: function(form) {
                alert('correcto');            
@@ -101,7 +100,5 @@
         });
     });
 
-    function eliminar_datos(id) {
-        $("#id_eliminar").val(id);
-    } 
+    
 </script>

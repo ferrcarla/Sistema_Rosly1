@@ -8,18 +8,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="frmRegistro" meihod="post"> 
+                <form id="frmRegistro" method="post" enctype="multipart/form-data"> 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nombre del producto:</label>
                         <input type="text" class="form-control" id="name" name="nombre" maxlength="15" required placeholder="Escribe aqui">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Imagen del producto:</label>
-                        <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg">
+                        <input type="file" id="imagen" name="imagen" >
                     </div>
                     <div class="form-group">
                         <label for="ci">Categoria</label>
-                        <select class="form-control" name="categorias" id="categoria">
+                        <select class="form-control" name="categoria" id="categoria">
                             <option value="">Seleccione una categoria</option>
                             <?php foreach ($categorias as $categoria) : ?>
                                 <option value="<?php echo $categoria['Id_Categoria'] ?>"><?php echo $categoria['Nombre'] ?></option>
@@ -30,7 +30,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="talla">Talla</label>
-                            <select class="form-control" name="tallas" id="talla">
+                            <select class="form-control" name="talla" id="talla">
                                 <option value="0"></option>
                                 <option value="1">S</option>
                                 <option value="2">M</option>
@@ -38,9 +38,9 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputState">Color</label>
+                            <label for="color">Color</label>
                             <select class="form-control" name="color" id="color">
-                                <option value="0"></option>
+                                <option value=""></option>
                                 <option value="1">Azul</option>
                                 <option value="2">Morado</option>
                                 <option value="3">Blanco</option>
@@ -48,12 +48,12 @@
                         </div>
                     </div>                       
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Descripcion:</label>
-                        <textarea class="form-control" id="descripcion"></textarea>
+                        <label for="descripcion" class="col-form-label">Descripcion:</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Precio:</label>
-                        <input type="text" class="form-control" id="precio" name="precio" maxlength="4" required placeholder>
+                        <label for="precio" class="col-form-label">Precio:</label>
+                        <input type="text" class="form-control" id="precio" name="precio" maxlength="4" required placeholder="precio">
                     </div>
                     <div class="float-right">
                         <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
