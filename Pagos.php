@@ -1,26 +1,22 @@
 <?php
-  require_once("app/config/db.php");
-  require_once("app/config/conection.php");
-  $sql = "SELECT a.Id_Articulo,
-        c.Nombre,
-        a.Nombre_Art,
-        a.Color_Art,
-        a.Talla_Art,
-        a.detalle,
-        a.catidad,
-        a.foto,
-        a.precio,
-        a.fecha_creacion    
-    FROM articulo a, categoria c
-    where a.Id_Categoria = c.Id_Categoria
-";
+// include database configuration file
+include 'Configuracion.php';
 
-$sql_categorias = "Select * from categoria";
+// initializ shopping cart class
+include 'La-carta.php';
+$cart = new Cart;
 
-if (!($productos = $con->query($sql)) ) {
-    echo "Falló SELECT: (" . $con->error . ") " . $con->error;
-    die();
+// redirect to home if cart is empty
+if($cart->total_items() <= 0){
+    header("Location: articulos.php");
 }
+
+// set customer ID in session
+$_SESSION['sessCustomerID'] = 9736463;
+
+// get customer details by session customer ID
+$query = $db->query("SELECT * FROM cliente WHERE CI_Cliente = ".$_SESSION['sessCustomerID']);
+$custRow = $query->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="es">
@@ -36,6 +32,18 @@ if (!($productos = $con->query($sql)) ) {
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/stile.css">
+        <link rel="stylesheet" href="resources/assets/font/bootstrap-icons.css">
+        <script>
+        function updateCartItem(obj,id){
+            $.get("cartAction.php", {action:"updateCartItem", id:id, qty:obj.value}, function(data){
+                if(data == 'ok'){
+                    location.reload();
+                }else{
+                    alert('Cart update failed, please try again.');
+                }
+            });
+        }
+        </script>
     </head>
     <body>
         
@@ -58,8 +66,7 @@ if (!($productos = $con->query($sql)) ) {
                                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                     <ul id="nav" class="navbar-nav ml-auto">
                                         <li class="nav-item"><a class="page-scroll" href="#inicio">Inicio</a></li>
-                                        <li class="nav-item"><a class="page-scroll active" href="#caracteristica">Tienda</a></li>
-                                        <li class="nav-item"><a class="page-scroll" href="#procesos">Mision y vision</a></li>                                        
+                                        <li class="nav-item"><a class="page-scroll active" href="#caracteristica">Tienda</a></li>          
                                     </ul>
                                 </div> <!-- navbar collapse -->
                             </nav> <!-- navbar -->
@@ -72,32 +79,61 @@ if (!($productos = $con->query($sql)) ) {
         <!-- ======== header end ================ -->
      
 
-        <!--========================= ARTICULOS ========================= -->       
+        <!--========================= pedido ========================= -->    
         <section id="caracteristica" class="service-section gray-bg pt-150 pb-70">
             <div class="container">
-                <div class="row"> 
-                    <?php foreach ($productos as $producto) : ?>
-                        <div class="col-3">
-                            <div class="card">
-                                <img 
-                                title="<?php echo $producto['Nombre_Art']?>"
-                                alt="Titulo"
-                                class="card-img-top"
-                                src="upload/publicidad/<?php echo $producto['foto']?>">
-                                <div class="card-body">
-                                    <span> <?php echo $producto['Nombre_Art']?></span>
-                                    <h5 class="card-Title"><?php echo number_format($producto['precio'],2) ?></h5>
-                                    <p class="card-text"><?php echo $producto['detalle']?></p>
-                                    <div class="col-md-12">
-                                        <a class="btn btn-danger" href="AccionCarta.php?action=addToCart&id=<?php echo $producto["Id_Articulo"]; ?>">Agregar al carrito</a>
-                                    </div>                                    
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>                    
+                <h1>Vista previa de la Orden</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Pricio</th>
+                            <th>Cantidad</th>
+                            <th>Sub total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if($cart->total_items() > 0){
+                            //get cart items from session
+                            $cartItems = $cart->contents();
+                            foreach($cartItems as $item){
+                        ?>
+                        <tr>
+                            <td><?php echo $item["name"]; ?></td>
+                            <td><?php echo '$'.$item["price"].' USD'; ?></td>
+                            <td><?php echo $item["qty"]; ?></td>
+                            <td><?php echo '$'.$item["subtotal"].' USD'; ?></td>
+                        </tr>
+                        <?php } }else{ ?>
+                        <tr><td colspan="4"><p>No hay articulos en tu carta......</p></td>
+                        <?php } ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"></td>
+                            <?php if($cart->total_items() > 0){ ?>
+                            <td class="text-center"><strong>Total <?php echo '$'.$cart->total().' USD'; ?></strong></td>
+                            <?php } ?>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="shipAddr">
+                    <h4>Detalles de envío</h4>
+                    <p><?php echo $custRow['Nombre_Cli'] .' '. $custRow['Apellido_Cli']; ?></p>
+                    <p><?php echo $custRow['Correo']; ?></p>
+                    <p><?php echo $custRow['Telefono']; ?></p>
+                    <p><?php echo $custRow['DIreccion']; ?></p>
+                </div>
+                <div class="footBtn">
+                    <a href="index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Comprando</a>
+                    <a href="AccionCarta.php?action=placeOrder" class="btn btn-success orderBtn">Realizar pedido <i class="glyphicon glyphicon-menu-right"></i></a>
                 </div>
             </div>
+            </div>
         </section>
+
+
         <!-- ========================= FOOTER start ========================= -->
         <footer class="footer gray-bg">
               <div class="container">

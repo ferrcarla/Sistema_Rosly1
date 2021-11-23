@@ -1,26 +1,7 @@
 <?php
-  require_once("app/config/db.php");
-  require_once("app/config/conection.php");
-  $sql = "SELECT a.Id_Articulo,
-        c.Nombre,
-        a.Nombre_Art,
-        a.Color_Art,
-        a.Talla_Art,
-        a.detalle,
-        a.catidad,
-        a.foto,
-        a.precio,
-        a.fecha_creacion    
-    FROM articulo a, categoria c
-    where a.Id_Categoria = c.Id_Categoria
-";
-
-$sql_categorias = "Select * from categoria";
-
-if (!($productos = $con->query($sql)) ) {
-    echo "Falló SELECT: (" . $con->error . ") " . $con->error;
-    die();
-}
+// initializ shopping cart class
+include 'La-carta.php';
+$cart = new Cart;
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="es">
@@ -36,6 +17,18 @@ if (!($productos = $con->query($sql)) ) {
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/stile.css">
+        <link rel="stylesheet" href="resources/assets/font/bootstrap-icons.css">
+        <script>
+        function updateCartItem(obj,id){
+            $.get("cartAction.php", {action:"updateCartItem", id:id, qty:obj.value}, function(data){
+                if(data == 'ok'){
+                    location.reload();
+                }else{
+                    alert('Cart update failed, please try again.');
+                }
+            });
+        }
+        </script>
     </head>
     <body>
         
@@ -58,8 +51,7 @@ if (!($productos = $con->query($sql)) ) {
                                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                     <ul id="nav" class="navbar-nav ml-auto">
                                         <li class="nav-item"><a class="page-scroll" href="#inicio">Inicio</a></li>
-                                        <li class="nav-item"><a class="page-scroll active" href="#caracteristica">Tienda</a></li>
-                                        <li class="nav-item"><a class="page-scroll" href="#procesos">Mision y vision</a></li>                                        
+                                        <li class="nav-item"><a class="page-scroll active" href="#caracteristica">Tienda</a></li>          
                                     </ul>
                                 </div> <!-- navbar collapse -->
                             </nav> <!-- navbar -->
@@ -72,32 +64,55 @@ if (!($productos = $con->query($sql)) ) {
         <!-- ======== header end ================ -->
      
 
-        <!--========================= ARTICULOS ========================= -->       
+        <!--========================= pedido ========================= -->    
         <section id="caracteristica" class="service-section gray-bg pt-150 pb-70">
             <div class="container">
-                <div class="row"> 
-                    <?php foreach ($productos as $producto) : ?>
-                        <div class="col-3">
-                            <div class="card">
-                                <img 
-                                title="<?php echo $producto['Nombre_Art']?>"
-                                alt="Titulo"
-                                class="card-img-top"
-                                src="upload/publicidad/<?php echo $producto['foto']?>">
-                                <div class="card-body">
-                                    <span> <?php echo $producto['Nombre_Art']?></span>
-                                    <h5 class="card-Title"><?php echo number_format($producto['precio'],2) ?></h5>
-                                    <p class="card-text"><?php echo $producto['detalle']?></p>
-                                    <div class="col-md-12">
-                                        <a class="btn btn-danger" href="AccionCarta.php?action=addToCart&id=<?php echo $producto["Id_Articulo"]; ?>">Agregar al carrito</a>
-                                    </div>                                    
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>                    
-                </div>
+                <h1>Carrito de compras</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Sub total</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if($cart->total_items() > 0){
+                            //get cart items from session
+                            $cartItems = $cart->contents();
+                            foreach($cartItems as $item){
+                        ?>
+                        <tr>
+                            <td><?php echo $item["name"]; ?></td>
+                            <td><?php echo '$'.$item["price"].' USD'; ?></td>
+                            <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
+                            <td><?php echo 'Bs'.$item["subtotal"].' BOB'; ?></td>
+                            <td>
+                                <a href="AccionCarta.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Confirma eliminar?')"><i class="bi bi-trash-fill"></i></a>
+                            </td>
+                        </tr>
+                        <?php } }else{ ?>
+                        <tr><td colspan="5"><p>Tu carta esta vacia.....</p></td>
+                        <?php } ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><a href="articulos.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Comprando</a></td>
+                            <td colspan="2"></td>
+                            <?php if($cart->total_items() > 0){ ?>
+                            <td class="text-center"><strong>Total <?php echo 'Bs'.$cart->total().' BOB'; ?></strong></td>
+                            <td><a href="Pagos.php" class="btn btn-success btn-block">Pagos <i class="glyphicon glyphicon-menu-right"></i></a></td>
+                            <?php } ?>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </section>
+
+
         <!-- ========================= FOOTER start ========================= -->
         <footer class="footer gray-bg">
               <div class="container">
