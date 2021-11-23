@@ -7,7 +7,7 @@
     $columna="CI_Cliente";
     $ci=$_REQUEST['ci'];
 
-    if ($_REQUEST['type'] == '1') {
+    if (isset($_REQUEST['type'])) {
         $ci_original = $_REQUEST['ci_before'];
         $sql="SELECT * 
             FROM cliente 
