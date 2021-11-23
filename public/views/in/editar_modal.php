@@ -12,7 +12,7 @@
                     <input type="hidden" name="id_entrada" id="id_entrada" value="">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Producto:</label>
-                        <select class="form-control" name="producto_id_edit" id="producto_id_edit" required placeholder="seleccione producto">
+                        <select class="form-control" name="producto_edit" id="producto_edit" required placeholder="seleccione producto">
                             <option value="">seleccione producto</option>
                             <?php foreach ($productos as $producto) : ?>
                                 <option value="<?php echo $producto['Id_Articulo'] ?>"><?php echo $producto['Nombre_Art'] ?></option>

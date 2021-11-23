@@ -2,7 +2,7 @@
 	require_once ("../../config/db.php");
 	require_once ("../../config/conection.php");
 
-	$id=$_REQUEST['id_entrada'];	
+	$id=$_REQUEST['id'];	
 	$sql="SELECT * FROM entrada
 		where Id_Entrada = {$id}";
 	if($result = $con->query($sql)){

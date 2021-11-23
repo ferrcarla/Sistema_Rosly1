@@ -121,7 +121,41 @@
                 },
             },
             submitHandler: function(form) {
-                alert('correcto');
+                event.preventDefault();
+                $.ajax({
+                    url: '../../models/in/editar_model.php',
+                    type: 'post',
+                    data: $("#frmEditar").serialize(),
+                    beforeSend: function() {
+                        transicion("Procesando Espere....");
+                        $('#btnEditar').attr({
+                            disabled: 'true'
+                        });
+                    }
+                }).done(function(response) {
+                    if (response == 1) {
+                        $('#btnEditar').attr({
+                            disabled: 'true'
+                        });
+                        transicionSalir();
+                        mensajes_alerta('DATOS GUARDADOS EXITOSAMENTE !! ', 'success', 'GUARDAR DATOS');
+                        transicion("Procesando Espere....");
+                        setTimeout(function() {
+                            window.location.href = '<?php echo CONTROLLER ?>in/index.php';
+                        }, 3000);
+                    } else {
+                        transicionSalir();
+                        mensajes_alerta('ERROR AL REGISTRAR verifique los datos!! ' + response, 'error', 'GUARDAR DATOS');
+                    }
+                }).fail(function(response) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al registrar',
+                        text: 'se produjo el siguiente error' + response,
+                    })
+                    transicionSalir();
+                    $('#btnEditar').removeAttr('disabled');
+                });
             }
         });
 
@@ -134,28 +168,16 @@
             type: 'POST',
             dataType: "json",
             data: {
-                id_producto: id
+                id: id
             }
         }).done(function(datos) {
-            $("#id_producto").val(id);
-            $("#frmEditar [id=nombre_edit]").val(datos['producto']['Nombre_Art']);
-            $("#categoria_edit option").each(function() {
-                if ($(this).val() == datos['producto']['Id_Categoria']) {
+            $("#id_entrada").val(id);
+            $("#producto_edit option").each(function() {
+                if ($(this).val() == datos['entrada']['Id_Entrada']) {
                     $(this).attr('selected', 'true');
                 }
             });
-            $("#talla_edit option").each(function() {
-                if ($(this).val() == datos['producto']['Talla_Art']) {
-                    $(this).attr('selected', 'true');
-                }
-            });
-            $("#color_edit option").each(function() {
-                if ($(this).val() == datos['producto']['Color_Art']) {
-                    $(this).attr('selected', 'true');
-                }
-            });
-            $("#frmEditar [id=descripcion_edit]").val(datos['producto']['detalle']);
-            $("#frmEditar [id=precio_edit]").val(datos['producto']['precio']);
+            $("#frmEditar [id=cantidad_edit]").val(datos['entrada']['Cantidad']);
         }).fail(function(response) {
             Swal.fire({
                 icon: 'error',
