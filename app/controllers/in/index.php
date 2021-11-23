@@ -18,7 +18,15 @@ $sql = "SELECT e.Id_Entrada,
     where e.Id_Usuario = u.Id_Usuario
     and e.Id_Articulo = a.Id_Articulo
 ";
+$sql_producto = "SELECT * From articulo";
+
 if (!($entradas = $con->query($sql))) {
+    echo "Falló SELECT: (" . $con->errno . ") " . $con->error;
+}
+$con->close();
+
+$con = connect();
+if (!($productos = $con->query($sql_producto))) {
     echo "Falló SELECT: (" . $con->errno . ") " . $con->error;
 }
 $con->close();

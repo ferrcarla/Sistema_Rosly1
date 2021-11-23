@@ -40,9 +40,9 @@
                                             <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" onclick="obtener_datos(<?php echo $entrada['Id_Entrada'] ?>)">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar" onclick="eliminar_datos(<?php echo $entrada['Id_Entrada'] ?>">
+                                            <!-- <a class="btn btn-secondary btn-sm" href="#modalEliminar" role="button" data-toggle="modal" data-placement="top" title="Eliminar" onclick="eliminar_datos(<?php echo $entrada['Id_Entrada'] ?>">
                                                 <i class="bi bi-trash-fill"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
@@ -71,9 +71,43 @@
                 },
             },
             submitHandler: function(form) {
-                alert('correcto');
+                event.preventDefault();
+                $.ajax({
+                    url: '../../models/in/registro_model.php',
+                    type: 'post',
+                    data: $("#frmRegistro").serialize(),
+                    beforeSend: function() {
+                        transicion("Procesando Espere....");
+                        $('#btnRegistrar').attr({
+                            disabled: 'true'
+                        });
+                    }
+                }).done(function(response) {
+                    if (response == 1) {
+                        $('#btnRegistrar').attr({
+                            disabled: 'true'
+                        });
+                        transicionSalir();
+                        mensajes_alerta('DATOS GUARDADOS EXITOSAMENTE !! ', 'success', 'GUARDAR DATOS');
+                        transicion("Procesando Espere....");
+                        setTimeout(function() {
+                            window.location.href = '<?php echo CONTROLLER ?>in/index.php';
+                        }, 3000);
+                    } else {
+                        transicionSalir();
+                        mensajes_alerta('ERROR AL REGISTRAR verifique los datos!! ' + response, 'error', 'GUARDAR DATOS');
+                    }
+                }).fail(function(response) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al registrar',
+                        text: 'se produjo el siguiente error' + response,
+                    })
+                    transicionSalir();
+                    $('#btnRegistrar').removeAttr('disabled');
+                });
             }
-        });        
+        });
 
         $("#frmEditar").validate({
             rules: {
@@ -84,44 +118,50 @@
                     required: true,
                     maxlength: 3,
                     number: true,
-                },               
+                },
             },
             submitHandler: function(form) {
-               alert('correcto');            
+                alert('correcto');
             }
-        });        
+        });
 
     });
 
 
     function obtener_datos(id) {
         $.ajax({
-            url: '../../models/client/datos_docente.php',
+            url: '../../models/in/datos_entrada.php',
             type: 'POST',
             dataType: "json",
             data: {
-                id_docente: id
-            },
-            success: function(datos) {
-                //console.log(datos);
-                $("#frmEditar [id=nombre]").val(datos['docente']['nombre']);
-                $("#frmEditar [id=paterno]").val(datos['docente']['paterno']);
-                $("#frmEditar [id=materno]").val(datos['docente']['materno']);
-                $("#frmEditar [id=celular]").val(datos['docente']['celular']);
-                $("#frmEditar [id=nombre_usuario]").val(datos['docente']['nombre_usuario']);
-                $("#id_role option").each(function() {
-                    if ($(this).val() == datos['docente']['id_rol']) {
-                        //console.log('ok: '+$(this).val());
-                        $(this).attr('selected', 'true');
-                    }
-                });
-                $("#id_docente").val(datos['docente']['id_docente']);
-                $("#id_usuario").val(datos['docente']['id_usuario']);
+                id_producto: id
             }
+        }).done(function(datos) {
+            $("#id_producto").val(id);
+            $("#frmEditar [id=nombre_edit]").val(datos['producto']['Nombre_Art']);
+            $("#categoria_edit option").each(function() {
+                if ($(this).val() == datos['producto']['Id_Categoria']) {
+                    $(this).attr('selected', 'true');
+                }
+            });
+            $("#talla_edit option").each(function() {
+                if ($(this).val() == datos['producto']['Talla_Art']) {
+                    $(this).attr('selected', 'true');
+                }
+            });
+            $("#color_edit option").each(function() {
+                if ($(this).val() == datos['producto']['Color_Art']) {
+                    $(this).attr('selected', 'true');
+                }
+            });
+            $("#frmEditar [id=descripcion_edit]").val(datos['producto']['detalle']);
+            $("#frmEditar [id=precio_edit]").val(datos['producto']['precio']);
+        }).fail(function(response) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'se produjo el siguiente error' + response,
+            });
         });
-    }
-
-    function eliminar_datos(id) {
-        $("#id_eliminar").val(id);
     }
 </script>

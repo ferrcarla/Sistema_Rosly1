@@ -28,6 +28,7 @@ if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD']=='POST'){
 					$_SESSION['direcccion'] = $row["Direcccion"];
 					$_SESSION['telefono'] = $row["Telefono"];
 					$_SESSION['email'] = $row["User"];
+					$_SESSION['id_usuario'] = $row["Id_Usuario"];
 
 					$login = $db->signIn($query, $_SESSION['user_sesion']);
 				} else {				
