@@ -8,36 +8,37 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form="frmEditar" method="post">
+                <form id="frmEditar" method="post">
+                    <input id="id" type="hidden" name="id" value="">
                     <div class="form-group">
                         <label for="clientes" class="col-form-label">Clientes:</label>
                         <select class="form-control" name="clientes_edit" id="clientes_edit">
                             <option value="">Seleccione cliente...</option>
-                            <option value="1">Clara</option>
-                            <option value="2">Rosa</option>
-                            <option value="3">Esther</option>
-                         </select>     
-                     </div>
-                       
+                            <?php foreach ($clientes as $cliente) : ?>
+                                <option value="<?php echo $cliente['CI_Cliente'] ?>"><?php echo $cliente['Nombre_Cli'] . ' ' . $cliente['Apellido_Cli'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="productos">Lista de productos</label>
-                        <select class="form-control" name="productos_id_edit" id="productos_id_edit">
+                        <select class="form-control" name="productos_edit" id="productos_edit">
                             <option value="">Seleccione productos...</option>
-                            <option value="1">Chompas</option>
-                            <option value="2">Pantalones</option>
-                            <option value="3">Poleras</option>
-                        </select>                    
+                            <?php foreach ($productos as $producto) : ?>
+                                <option value="<?php echo $producto['Id_Articulo'] ?>"><?php echo $producto['Nombre_Art'] ?></option>
+                            <?php endforeach ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="cantidad" class="col-form-label">Cantidad:</label>
-                        <input type="text" class="form-control" id="cantidad_edit" name="cantidad_edit" maxlength ="3" required placeholder="cantidad">
-                    </div>       
-                   <div class="float-right">
-                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-success" id="btnEditar">Editar</button>
-                </div>
+                        <input type="text" class="form-control" id="cantidad_edit" name="cantidad_edit" maxlength="3" required placeholder="cantidad">
+                    </div>
+                    <div class="float-right">
+                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-success" id="btnEditar">Editar</button>
+                    </div>
                 </form>
-            </div>      
+            </div>
+        </div>
     </div>
-  </div>
 </div>

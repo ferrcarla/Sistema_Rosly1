@@ -19,7 +19,22 @@ $sql = "SELECT s.Id_Salida,
     where s.CI_Cliente = c.CI_Cliente
     and s.Id_Articulo = a.Id_Articulo
 ";
+
+$sql_producto = "SELECT * From articulo";
+$sql_cliente = "SELECT * From cliente";
+
 if (!($salidas = $con->query($sql))) {
+    echo "Falló SELECT: (" . $con->errno . ") " . $con->error;
+}
+$con->close();
+$con = connect();
+if (!($productos = $con->query($sql_producto))) {
+    echo "Falló SELECT: (" . $con->errno . ") " . $con->error;
+}
+$con->close();
+
+$con = connect();
+if (!($clientes = $con->query($sql_cliente))) {
     echo "Falló SELECT: (" . $con->errno . ") " . $con->error;
 }
 $con->close();
