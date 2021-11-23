@@ -3,8 +3,10 @@
 	require_once ("../../config/db.php");
 	require_once ("../../config/conection.php");
 
-	//echo "<pre>";print_r ($_REQUEST);echo "</pre>";
-	$archivo = (isset($_FILES['imagen'])) ? $_FILES['imagen'] : null;
+	//echo "<pre>";print_r ($_REQUEST);echo "</pre>";die();
+	// echo "<pre>";print_r ($_FILES);echo "</pre>";die();
+
+	$archivo = (isset($_FILES['imagen_edit']) && $_FILES['imagen_edit']['size'] > 0) ? $_FILES['imagen_edit'] : null;
     if ($archivo) {
         $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
         $extension = strtolower($extension);
@@ -15,6 +17,7 @@
             $archivo_ok = move_uploaded_file($archivo['tmp_name'], $ruta_destino_archivo);
         }
     }
+
 	$nombre   = trim($_POST["nombre_edit"]);
 	$categoria   = trim($_POST["categoria_edit"]);
     $talla  = trim($_POST["talla_edit"]);    
@@ -23,27 +26,27 @@
     $precio = trim($_POST["precio_edit"]);
 
     $id = $_POST["id_producto"];
-	if ($archivo) {
+	if ($archivo) {		
         $sql = "UPDATE articulo 
 			set Id_Categoria='{$categoria}', 
 			Nombre_Art='{$nombre}', 
-			Color_Art='{$Color_Art}', 
+			Color_Art='{$color}', 
 			Talla_Art='{$talla}', 
 			detalle='{$descripcion}',
-			foto= '{$archivo}',
+			foto= '{$nombre_nuevo}',
 			precio={$precio} 
-		where Id_Articulo={$id}";
-    }else{
-	$sql = "UPDATE articulo 
+		where Id_Articulo={$id}";	
+    }else{		
+		$sql = "UPDATE articulo 
 			set Id_Categoria='{$categoria}', 
 			Nombre_Art='{$nombre}', 
-			Color_Art='{$Color_Art}', 
+			Color_Art='{$color}', 
 			Talla_Art='{$talla}', 
 			detalle='{$descripcion}',
 			precio={$precio} 
 		where Id_Articulo={$id}";
     }
-
+	
 	if (!$con->query($sql)) {
 		echo "Falló la edicion: (" . $con->errno . ") " . $con->error;
 	}

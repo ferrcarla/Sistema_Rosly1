@@ -29,6 +29,7 @@
                                     <th>Detalle</th>
                                     <th>cantidad</th>
                                     <th>precio</th>
+                                    <th>Imagen</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -42,6 +43,13 @@
                                         <td><?php echo $producto['detalle'] ?></td>
                                         <td><?php echo $producto['catidad'] ?></td>
                                         <td><?php echo $producto['precio'] ?></td>
+                                        <td>
+                                            <?php if ($producto['foto'] != null) : ?>
+                                                <img src="<?php echo ROOT . 'upload/publicidad/' . $producto['foto'] ?>" class="rounded float-right" alt="..." height="100rem">
+                                            <?php else : ?>
+                                                sin imagen
+                                            <?php endif; ?>
+                                        </td>
                                         <td>
                                             <a class="btn btn-success btn-sm" href="#modalEditar" role="button" data-placement="top" title="Editar" data-toggle="modal" onclick="obtener_datos(<?php echo $producto['Id_Articulo'] ?>)">
                                                 <i class="bi bi-pencil-square"></i>
@@ -67,7 +75,7 @@
     $(document).ready(function() {
         $("#frmRegistro").validate({
             rules: {
-                NOMBRE: {
+                nombre: {
                     required: true,
                     maxlength: 50
                 },
@@ -84,7 +92,7 @@
                     required: true
                 },
                 descripcion: {
-                    required: true,                    
+                    required: true,
                     maxlength: 50,
                     minlength: 5
                 },
@@ -105,28 +113,28 @@
 
         $("#frmEditar").validate({
             rules: {
-                NOMBRE: {
+                nombre_edit: {
                     required: true,
                     maxlength: 50
                 },
-                imagen: {
+                imagen_edit: {
                     required: true
                 },
-                categoria: {
+                categoria_edi: {
                     required: true
                 },
-                talla: {
+                talla_edit: {
                     required: true
                 },
-                color: {
+                color_edit: {
                     required: true
                 },
-                descripcion: {
-                    required: true,                    
+                descripcion_edit: {
+                    required: true,
                     maxlength: 50,
                     minlength: 5
                 },
-                precio: {
+                precio_edit: {
                     required: true,
                     maxlength: 4
                 }
@@ -169,7 +177,7 @@
                 }
             });
             $("#frmEditar [id=descripcion_edit]").val(datos['producto']['detalle']);
-            $("#frmEditar [id=precio_edit]").val(datos['producto']['precio']);            
+            $("#frmEditar [id=precio_edit]").val(datos['producto']['precio']);
         }).fail(function(response) {
             Swal.fire({
                 icon: 'error',

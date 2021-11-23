@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Imagen del producto:</label>
-                        <input type="file" id="imagen_edit" name="imagen">
+                        <input type="file" id="imagen_edit" name="imagen_edit">
                     </div>
                     <div class="form-group">
                         <label for="categoria_edit">Categoria</label>
@@ -33,9 +33,11 @@
                             <label for="talla">Talla</label>
                             <select class="form-control" name="talla_edit" id="talla_edit">
                                 <option value="">Seleccione la talla</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
+                                <option value="36">36</option>
+                                <option value="38">38</option>
+                                <option value="40">40</option>
+                                <option value="42">42</option>
+                                <option value="44">44</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
