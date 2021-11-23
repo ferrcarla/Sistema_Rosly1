@@ -10,26 +10,26 @@
             <div class="modal-body">
                 <form id="frmEditar" method="post">
                     <div class="form-group">
-                        <label for="clientes" class="col-form-label">Clientes:</label>
-                        <select class="form-control" name="clientes" id="clientes">
-                            <option value="0">Selccione aqui..</option>
+                        <label for="clientes_edit" class="col-form-label">Clientes:</label>
+                        <select class="form-control" name="clientes_edit" id="clientes_edit">
+                            <option value="">Seleccione aqui...</option>
                             <option value="1">Clara</option>
                             <option value="2">Rosa</option>
                             <option value="3">Esther</option>
                          </select>     
                      </div> 
                     <div class="form-group">
-                        <label for="productos" class="col-form-label">Productos:</label>
-                        <select class="form-control" name="prodcutos" id="productos">
-                            <option value="0">Selccione aqui..</option>
+                        <label for="productos_edit" class="col-form-label">Productos:</label>
+                        <select class="form-control" name="productos_edit" id="productos_edit">
+                            <option value="">Seleccione aqui...</option>
                             <option value="1">Chompas</option>
                             <option value="2">Pantalones</option>
                             <option value="3">Poleras</option>
                         </select>                    
                     </div> 
                     <div class="form-group">
-                        <label for="cantidad" class="col-form-label">Cantidad:</label>
-                        <input type="text" class="form-control" id="cantidad" name="cantidad" maxlength ="3" required placeholder="cantidad">
+                        <label for="cantidad_edit" class="col-form-label">Cantidad:</label>
+                        <input type="text" class="form-control" id="cantidad_edit" name="cantidad_edit" maxlength ="3" required placeholder="cantidad">
                     </div>        
                     <div class="float-right">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
