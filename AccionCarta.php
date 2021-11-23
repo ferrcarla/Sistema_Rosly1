@@ -32,48 +32,40 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     }elseif($_REQUEST['action'] == 'removeCartItem' && !empty($_REQUEST['id'])){
         $deleteItem = $cart->remove($_REQUEST['id']);
         header("Location: VerCarta.php");
-    }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['sessCustomerID'])){
-        // insert order details into database
-        $insertOrder = $db->query("INSERT INTO pedidos (customer_id, total_price, created, modified) VALUES ('".$_SESSION['sessCustomerID']."', '".$cart->total()."', '".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."')");
+    }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['sessCustomerID'])){   
 
-        if($insertOrder){
-            $orderID = $db->insert_id;
-            $sql = '';
-            // get cart items
-            $cartItems = $cart->contents();
-            $talla = '36';
-            $color = 'Azul';
-            $ci = $_SESSION['sessCustomerID'];
-            foreach($cartItems as $item){                
-                $total = $item['price'] * $item['qty'];
-                $sql .= "INSERT INTO pedido (
-                    CI_Cliente, 
-                    Id_NIT, 
-                    Id_Articulo, 
-                    Talla, 
-                    Color, 
-                    Cantidad, 
-                    Precio_total
-                ) VALUES ({$ci},                
-                {$ci},
-                {$item['id']},
-                '{$talla}',
-                '{$color}',
-                {$item['qty']},
-                {$total}
-                );";
-            }
-            echo "<pre>";print_r ($sql);echo "</pre>";die();
-            // insert order items into database
-            $insertOrderItems = $db->multi_query($sql);
-
-            if($insertOrderItems){
-                $cart->destroy();
-                header("Location: OrdenExito.php?id=$orderID");
-            }else{
-                $cart->destroy();
-                header("Location: Pagos.php");
-            }
+        $sql = '';
+        // get cart items
+        $cartItems = $cart->contents();
+        $talla = '36';
+        $color = 'Azul';
+        $ci = $_SESSION['sessCustomerID'];
+        $sucursal = 860281011;
+        foreach($cartItems as $item){                
+            $total = $item['price'] * $item['qty'];
+            $sql .= "INSERT INTO pedidos (
+                CI_Cliente, 
+                Id_NIT, 
+                Id_Articulo, 
+                Talla, 
+                Color, 
+                Cantidad, 
+                Precio_total
+            ) VALUES ({$ci},                
+            {$sucursal},
+            {$item['id']},
+            '{$talla}',
+            '{$color}',
+            {$item['qty']},
+            {$total}
+            );";
+        }
+        
+        // insert order items into database
+        $insertOrderItems = $db->multi_query($sql);            
+        if($insertOrderItems){
+            $cart->destroy();
+            header("Location: OrdenExito.php?id=$orderID");
         }else{
             header("Location: Pagos.php");
         }

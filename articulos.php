@@ -143,6 +143,6 @@ if (!($productos = $con->query($sql)) ) {
 		<script src="js/count-up.min.js"></script>
 		<script src="js/wow.min.js"></script>
 		<!-- <script src="js/main.js"></script> -->
-        <script src="js/scripts.js"></script>
+        <!-- <script src="js/scripts.js"></script> -->
     </body>
 </html>
