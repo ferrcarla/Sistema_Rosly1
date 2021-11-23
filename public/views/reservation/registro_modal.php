@@ -20,7 +20,7 @@
                      </div>
                     <div class="form-group">
                         <label for="productos" class="col-form-label">Productos:</label>
-                        <select class="form-control" name="prodcutos" id="productos">
+                        <select class="form-control" name="productos" id="productos">
                             <option value="">Seleccione aqui...</option>
                             <option value="1">Chompas</option>
                             <option value="2">Pantalones</option>

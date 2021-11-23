@@ -75,7 +75,26 @@
                     required: true,
                 },
                 cantidad: {
-                    required: true
+                    required: true,
+                    maxlength: 3
+                },   
+            },
+            submitHandler: function(form) {
+                alert('correcto');
+            }            
+        });
+
+        $("#frmEditar").validate({
+            rules: {
+                clientes_edit: {
+                    required: true,
+                },
+                productos_edit: {
+                    required: true,
+                },
+                cantidad_edit: {
+                    required: true,
+                    maxlength: 3
                 },   
             },
             submitHandler: function(form) {
