@@ -1,3 +1,27 @@
+<?php
+  require_once("app/config/db.php");
+  require_once("app/config/conection.php");
+  $sql = "SELECT a.Id_Articulo,
+        c.Nombre,
+        a.Nombre_Art,
+        a.Color_Art,
+        a.Talla_Art,
+        a.detalle,
+        a.catidad,
+        a.foto,
+        a.precio,
+        a.fecha_creacion    
+    FROM articulo a, categoria c
+    where a.Id_Categoria = c.Id_Categoria
+";
+
+$sql_categorias = "Select * from categoria";
+
+if (!($productos = $con->query($sql)) ) {
+    echo "Falló SELECT: (" . $con->error . ") " . $con->error;
+    die();
+}
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="es">
     <head>
@@ -47,263 +71,33 @@
         <!-- ======== header end ================ -->
      
 
-        <!--========================= ARTICULOS ========================= -->
-        <!-- <section id="caracteristica" class="service-section gray-bg pt-150 pb-70">
-            <div class="container">
-                <article class="row">
-                    <div class="col-xl-5 col-lg-6 col-md-8 mx-auto">
-                        <div class="section-title text-center mb-55">
-                            <h2 class="mb-15 wow fadeInUp" data-wow-delay=".4s">Nuestro Catalogo </h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">.</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="hero-img">
-                            <img  class="wow fadeInRight img-fluid img-thumbnail" data-wow-delay=".4s" data-wow-duration="1.3s" src="img/de3.jpg" width="400" height="100" alt="">
-                            <div class="section-title text-center mb-55">
-                                <span class="wow fadeInDown text-danger" data-wow-delay=".2s">PRENDAS
-                                    <p class="wow fadeInUp" data-wow-delay=".6s"></p>
-                                    <a href="#caracteristica" class="theme-btn wow fadeInUp" data-wow-delay=".8s" data-wow-duration="1.3s">Ver Mas</a>
-                           
-                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="hero-img">
-                            <img  class="wow fadeInRight img-fluid img-thumbnail" data-wow-delay=".4s" data-wow-duration="1.3s" src="img/de4.jpg" width="400" height="100" alt="">
-                            <div class="section-title text-center mb-55">
-                                <span class="wow fadeInDown text-danger" data-wow-delay=".2s">NOVEDADES
-                                <p class="wow fadeInUp" data-wow-delay=".6s"></p>
-                                <a href="public/publicidad.php" class="theme-btn wow fadeInUp" data-wow-delay=".8s" data-wow-duration="1.3s">Ver Mas</a>
-                                
-                                </div>
-                                </div>                       
-                                <div class="col-xl-4 col-lg-4 col-md-6">
-                                    <div class="hero-img">
-                                        <img  class="wow fadeInRight img-fluid img-thumbnail" data-wow-delay=".4s" data-wow-duration="1.3s" src="img/de2.jpg" width="400" height="100" alt="">
-                                        <div class="section-title text-center mb-55">
-                                        <span class="wow fadeInDown text-danger" data-wow-delay=".2s">OFERTAS
-                                        <p class="wow fadeInUp" data-wow-delay=".6s"></p>
-                                        <a href="public/publicidad.php" class="theme-btn wow fadeInUp" data-wow-delay=".8s" data-wow-duration="1.3s">Ver Mas</a>
-                                       
-                        </div>
-                    </div>                       
-                </article>
-            </div>
-        </section> -->
-
-
+        <!--========================= ARTICULOS ========================= -->       
         <section id="caracteristica" class="service-section gray-bg pt-150 pb-70">
             <div class="container">
                 <div class="row"> 
-                    <div class="col-3">
-                        <div class="card">
-                            <img 
-                            title="Titulo Producto"
-                            ALT="Titulo"
-                            class="card-img-top"
-                            src="upload/publicidad/20211122221923.jpg">
-                            <div class="card-body">
-                                <span> Titulo del Producto</span>
-                                <h5 class="card-Title">$300.00</h5>
-                                <p class="card-text">Descripcion</p>
+                    <?php foreach ($productos as $producto) : ?>
+                        <div class="col-3">
+                            <div class="card">
+                                <img 
+                                title="<?php echo $producto['Nombre_Art']?>"
+                                alt="Titulo"
+                                class="card-img-top"
+                                src="upload/publicidad/<?php echo $producto['foto']?>">
+                                <div class="card-body">
+                                    <span> <?php echo $producto['Nombre_Art']?></span>
+                                    <h5 class="card-Title"><?php echo number_format($producto['precio'],2) ?></h5>
+                                    <p class="card-text"><?php echo $producto['detalle']?></p>
 
-                                <button class="btn btn-danger" 
-                                name="btnAction"
-                                value="Agregar"
-                                type="Enviar"
-                                >
-                                Agregar al Carrito
-                                </button>
+                                    <button class="btn btn-danger" value="Agregar"type="button">
+                                        Agregar al Carrito
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img 
-                            title="Titulo Producto"
-                            ALT="Titulo"
-                            class="card-img-top"
-                            src="upload/publicidad/20211122221923.jpg">
-                            <div class="card-body">
-                                <span> Titulo del Producto</span>
-                                <h5 class="card-Title">$300.00</h5>
-                                <p class="card-text">Descripcion</p>
-
-                                <button class="btn btn-danger" 
-                                name="btnAction"
-                                value="Agregar"
-                                type="Enviar"
-                                >
-                                Agregar al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img 
-                            title="Titulo Producto"
-                            ALT="Titulo"
-                            class="card-img-top"
-                            src="upload/publicidad/20211122221923.jpg">
-                            <div class="card-body">
-                                <span> Titulo del Producto</span>
-                                <h5 class="card-Title">$300.00</h5>
-                                <p class="card-text">Descripcion</p>
-
-                                <button class="btn btn-danger" 
-                                name="btnAction"
-                                value="Agregar"
-                                type="Enviar"
-                                >
-                                Agregar al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img 
-                            title="Titulo Producto"
-                            ALT="Titulo"
-                            class="card-img-top"
-                            src="upload/publicidad/20211122221923.jpg">
-                            <div class="card-body">
-                                <span> Titulo del Producto</span>
-                                <h5 class="card-Title">$300.00</h5>
-                                <p class="card-text">Descripcion</p>
-
-                                <button class="btn btn-danger" 
-                                name="btnAction"
-                                value="Agregar"
-                                type="Enviar"
-                                >
-                                Agregar al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img 
-                            title="Titulo Producto"
-                            ALT="Titulo"
-                            class="card-img-top"
-                            src="upload/publicidad/20211122221923.jpg">
-                            <div class="card-body">
-                                <span> Titulo del Producto</span>
-                                <h5 class="card-Title">$300.00</h5>
-                                <p class="card-text">Descripcion</p>
-
-                                <button class="btn btn-danger" 
-                                name="btnAction"
-                                value="Agregar"
-                                type="Enviar"
-                                >
-                                Agregar al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img 
-                            title="Titulo Producto"
-                            ALT="Titulo"
-                            class="card-img-top"
-                            src="upload/publicidad/20211122221923.jpg">
-                            <div class="card-body">
-                                <span> Titulo del Producto</span>
-                                <h5 class="card-Title">$300.00</h5>
-                                <p class="card-text">Descripcion</p>
-
-                                <button class="btn btn-danger" 
-                                name="btnAction"
-                                value="Agregar"
-                                type="Enviar"
-                                >
-                                Agregar al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img 
-                            title="Titulo Producto"
-                            ALT="Titulo"
-                            class="card-img-top"
-                            src="upload/publicidad/20211122221923.jpg">
-                            <div class="card-body">
-                                <span> Titulo del Producto</span>
-                                <h5 class="card-Title">$300.00</h5>
-                                <p class="card-text">Descripcion</p>
-
-                                <button class="btn btn-danger" 
-                                name="btnAction"
-                                value="Agregar"
-                                type="Enviar"
-                                >
-                                Agregar al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>                    
                 </div>
             </div>
         </section>
-    </div>
-</div>
-          
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-         <!--========= CARACTERISTICAS END========== -->
-        <!--=========TEAM =======-->
-        
-        <!--=========TEAM END=======-->
-        
-        <!--  ======= SUSCRIBETE end ========== -->
-
         <!-- ========================= FOOTER start ========================= -->
         <footer class="footer gray-bg">
               <div class="container">

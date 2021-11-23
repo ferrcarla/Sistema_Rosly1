@@ -1,7 +1,6 @@
 <?php
-  include "lib/config.php";
-  //include "lib/sesion.php";
-  include "lib/Database.php";
+  require_once("app/config/db.php");
+  require_once("app/config/conection.php");
 ?>
 <?php
   $db = new Database();
