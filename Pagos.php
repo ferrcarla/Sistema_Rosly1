@@ -33,6 +33,8 @@ $custRow = $query->fetch_assoc();
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/stile.css">
         <link rel="stylesheet" href="resources/assets/font/bootstrap-icons.css">
+        
+        <script src="resources/assets/js/jquery-3.5.1.min.js"></script>
         <script>
         function updateCartItem(obj,id){
             $.get("cartAction.php", {action:"updateCartItem", id:id, qty:obj.value}, function(data){
@@ -65,8 +67,8 @@ $custRow = $query->fetch_assoc();
 
                                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                     <ul id="nav" class="navbar-nav ml-auto">
-                                        <li class="nav-item"><a class="page-scroll" href="#inicio">Inicio</a></li>
-                                        <li class="nav-item"><a class="page-scroll active" href="#caracteristica">Tienda</a></li>          
+                                        <li class="nav-item"><a class="page-scroll" href="index.php">Inicio</a></li>
+                                        <li class="nav-item"><a class="page-scroll active" href="articulos.php">Tienda</a></li>          
                                     </ul>
                                 </div> <!-- navbar collapse -->
                             </nav> <!-- navbar -->
@@ -126,7 +128,7 @@ $custRow = $query->fetch_assoc();
                     <p><?php echo $custRow['DIreccion']; ?></p>
                 </div>
                 <div class="footBtn">
-                    <a href="index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Comprando</a>
+                    <a href="articulos.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Comprando</a>
                     <a href="AccionCarta.php?action=placeOrder" class="btn btn-success orderBtn">Realizar pedido <i class="glyphicon glyphicon-menu-right"></i></a>
                 </div>
             </div>
@@ -179,6 +181,6 @@ $custRow = $query->fetch_assoc();
 		<script src="js/count-up.min.js"></script>
 		<script src="js/wow.min.js"></script>
 		<!-- <script src="js/main.js"></script> -->
-        <script src="js/scripts.js"></script>
+        
     </body>
 </html>

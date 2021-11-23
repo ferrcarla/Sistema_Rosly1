@@ -18,6 +18,11 @@ $cart = new Cart;
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/stile.css">
         <link rel="stylesheet" href="resources/assets/font/bootstrap-icons.css">
+        <style>
+        .container{padding: 20px;}
+        input[type="number"]{width: 20%;}
+        </style>
+        <script src="resources/assets/js/jquery-3.5.1.min.js"></script>
         <script>
         function updateCartItem(obj,id){
             $.get("cartAction.php", {action:"updateCartItem", id:id, qty:obj.value}, function(data){
@@ -158,6 +163,6 @@ $cart = new Cart;
 		<script src="js/count-up.min.js"></script>
 		<script src="js/wow.min.js"></script>
 		<!-- <script src="js/main.js"></script> -->
-        <script src="js/scripts.js"></script>
+        
     </body>
 </html>

@@ -41,7 +41,11 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             $sql = '';
             // get cart items
             $cartItems = $cart->contents();
-            foreach($cartItems as $item){
+            $talla = '36';
+            $color = 'Azul';
+            $ci = $_SESSION['sessCustomerID'];
+            foreach($cartItems as $item){                
+                $total = $item['price'] * $item['qty'];
                 $sql .= "INSERT INTO pedido (
                     CI_Cliente, 
                     Id_NIT, 
@@ -50,11 +54,16 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
                     Color, 
                     Cantidad, 
                     Precio_total
-                ) VALUES ({$ci},
+                ) VALUES ({$ci},                
                 {$ci},
-                {$car}
-                ".$item['qty']."');";
+                {$item['id']},
+                '{$talla}',
+                '{$color}',
+                {$item['qty']},
+                {$total}
+                );";
             }
+            echo "<pre>";print_r ($sql);echo "</pre>";die();
             // insert order items into database
             $insertOrderItems = $db->multi_query($sql);
 
@@ -62,6 +71,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
                 $cart->destroy();
                 header("Location: OrdenExito.php?id=$orderID");
             }else{
+                $cart->destroy();
                 header("Location: Pagos.php");
             }
         }else{
