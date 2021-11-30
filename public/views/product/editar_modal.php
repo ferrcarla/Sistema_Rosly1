@@ -44,9 +44,21 @@
                             <label for="color">Color</label>
                             <select class="form-control" name="color_edit" id="color_edit">
                                 <option value="">Seleccione color..</option>
+                                <option value="Rojo">Rojo</option>
+                                <option value="Verde">Verde</option>
                                 <option value="Azul">Azul</option>
-                                <option value="Morado">Morado</option>
-                                <option value="Blanco">Blanco</option>
+                                <option value="Amarillo">Amarillo</option>
+                                <option value="Cian">Cian</option>
+                                <option value="Magenta">Magenta</option>
+                                <option value="Naranja">Naranja</option>
+                                <option value="Verde limon">Verde limon</option>
+                                <option value="Turquesa">Turquesa</option>
+                                <option value="Azul claro">Azul claro</option>
+                                <option value="Viloeta">Viloeta</option>
+                                <option value="Rojo azulado">Rojo azulado</option>
+                                <option value="Mostaza">Mostaza</option>
+                                <option value="Palo Roza">Palo Roza</option>
+                                <option value="Plomo">Plomo</option>
                             </select>
                         </div>
                     </div>
